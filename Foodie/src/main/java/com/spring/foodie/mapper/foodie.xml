@@ -8,7 +8,24 @@
 
 	<insert id="">
 	</insert>
+	
+	<select id="emailDuplicateCheck" parameterType="String" resultType="com.spring.foodie.model.MemberVO">
+		select * from tbl_member where email = #{email}
+	</select>
+	
+	<!-- === 로그인 처리하기 === -->
+	<select id="getLoginMember" resultType="com.spring.foodie.model.MemberVO" parameterType="HashMap">     
+		select no, type, kakaoid, name, email, pwd, registerday, status, idle      
+		from tbl_member
+		where email = #{email} and pwd = #{pwd} 
+	</select>
 
+	<!-- === 카카오로그인 처리하기 === -->
+	<select id="getkakaoLoginMember" resultType="com.spring.foodie.model.MemberVO" parameterType="String">     
+		select no, type, kakaoid, name, email, pwd, registerday, status, idle      
+		from tbl_member
+		where  kakaoid = #{kakaoid}  
+	</select>
 </mapper>
 
 

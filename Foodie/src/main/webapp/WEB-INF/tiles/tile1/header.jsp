@@ -28,6 +28,8 @@
 	//System.out.println("serverName : " + serverName);
 	//serverName : http://192.168.50.65:9090 
 %>
+
+
  <!-- Header Section Begin -->
     <header class="header">
         <div class="container-fluid">
@@ -46,11 +48,17 @@
                                 <li class="active"><a href="<%=ctxPath %>/index.foodie">Home</a></li>
                                 <li><a href="./listing.html">식당게시판</a></li>
                                 <li><a href="#">유저게시판</a></li>
+                                <c:if test="${empty sessionScope.loginuser}"> 
+								<li><a href="<%=ctxPath %>/login.food">로그인</a></li>
+								</c:if>
+								<c:if test="${not empty sessionScope.loginuser}"> 
+								<li><a href="<%=ctxPath %>/logout.food">로그아웃</a></li>
+								</c:if>
                             </ul>
                         </nav>
                         <!-- 유저모양 로그인 버튼 -->
                         <div class="header__menu__right">
-                            <a href="#" class="login-btn"><i class="fa fa-user"></i></a>
+                            <a href="<%=ctxPath %>/login.food" class="login-btn"><i class="fa fa-user"></i></a>
                         </div>
                     </div>
                 </div>

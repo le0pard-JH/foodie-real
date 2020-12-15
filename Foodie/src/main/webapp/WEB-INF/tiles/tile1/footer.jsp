@@ -10,6 +10,7 @@
 
 <%-- ======= #27. tile1 중 footer 페이지 만들기  ======= --%>
 
+
 <!-- Footer Section Begin -->
     <footer class="footer">
         <div class="container">
