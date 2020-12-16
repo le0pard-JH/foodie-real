@@ -252,7 +252,7 @@ function loginWithKakao() {
 			        				
 			        				var frm = document.kakaoLoginFrm;
 			        			
-		      		        		frm.userid.value=userid;
+		      		        		frm.kakaoid.value=kakaoid;
 		      		        		frm.email.value=email;
 		      		        		frm.name.value=name;
 		      		        		
