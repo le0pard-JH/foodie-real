@@ -26,6 +26,17 @@
 		from tbl_member
 		where  kakaoid = #{kakaoid}  
 	</select>
+	
+	
+	
+	<insert id="setLoginHistory" parameterType="HashMap">
+	
+			insert into tbl_loginhistory(fk_email, logindate, clientip)
+	    	values(#{email}, default, #{clientip})  
+	</insert>
+		
+	
+	
 </mapper>
 
 

@@ -54,13 +54,16 @@ public class FoodieController {
 
 		String email = request.getParameter("email");
 		String pwd = request.getParameter("pwd");
-
+		
+		
 		Map<String, String> paraMap = new HashMap<>();
 		paraMap.put("email", email);
 		paraMap.put("pwd", pwd);
-
+		
 		MemberVO loginuser = service.getLoginMember(paraMap);
-
+		
+		
+		
 		if (loginuser == null) { // 로그인 실패시
 			String message = "아이디 또는 암호가 틀립니다.";
 			String loc = "javascript:history.back()";
@@ -75,7 +78,11 @@ public class FoodieController {
 			return mav;
 			
 		} 
-
+		
+		String clientip = request.getLocalAddr();
+		paraMap.put("clientip", clientip);
+		service.setLoginHistory(paraMap);
+		
 		HttpSession session = request.getSession();
 		// 메모리에 생성되어져 있는 session을 불러오는 것이다.
 
@@ -99,7 +106,8 @@ public class FoodieController {
 	public ModelAndView kakaoLogin(ModelAndView mav, HttpServletRequest request) {
 
 		String kakaoid = request.getParameter("kakaoid");
-		
+		String email = request.getParameter("email");
+		String clientip = request.getLocalAddr();
 		
 		MemberVO loginuser = service.getkakaoLoginMember(kakaoid);
 
@@ -117,7 +125,15 @@ public class FoodieController {
 			return mav;
 			
 		} 
-
+		
+		Map<String, String> paraMap = new HashMap<>();
+		
+		
+		paraMap.put("clientip", clientip);
+		paraMap.put("email", email);
+		
+		service.setLoginHistory(paraMap);
+		
 		HttpSession session = request.getSession();
 		// 메모리에 생성되어져 있는 session을 불러오는 것이다.
 

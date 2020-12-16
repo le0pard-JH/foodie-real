@@ -62,6 +62,17 @@ public class FoodieDAO implements InterFoodieDAO {
 		MemberVO loginuser = sqlsession.selectOne("foodie.getkakaoLoginMember", kakaoid);
 		return loginuser;
 	}
+	
+	
+	
+	 // https://all-record.tistory.com/168
+	 // 로그인 히스토리 기록하기
+	@Override
+	public void setLoginHistory(Map<String, String> paraMap) {
+		
+		sqlsession.insert("foodie.setLoginHistory", paraMap);
+		
+	}
 
 
 }

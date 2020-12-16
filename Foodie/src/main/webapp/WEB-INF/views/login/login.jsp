@@ -213,8 +213,12 @@ function loginWithKakao() {
 		        		var kakaoid = res.id; // 사용자의 카카오 고유 id를 얻어온다.
 			    	  	var name = res.kakao_account.profile.nickname; // 사용자의 닉네임을 얻어온다.
 			    	    var email = res.kakao_account.email; // 사용자의 이메일을 얻어온다.
+			    	    
 			    	   	    	    
-			    	    /* var userid = id;       // 사용자의 카카오 고유 id를 userid로 사용하도록 함. */
+			    	    // console.log(kakaoid);
+			    	    // console.log(name);
+			    	    // console.log(email);
+			    	    
 						      
 			    	     
 
@@ -232,7 +236,11 @@ function loginWithKakao() {
 			        				alert("카카오로 로그인 할께요."); 
 			        				
 						       	 	var frm = document.kakaoLoginFrm;
+						       	 	
 		      		        		frm.kakaoid.value=kakaoid;
+		      		        		frm.email.value=email;
+		      		        		
+		      		        		
 		      		        		frm.action="/foodie/kakaoLogin.food";
 		      		        		
 		      		        		frm.method="POST";

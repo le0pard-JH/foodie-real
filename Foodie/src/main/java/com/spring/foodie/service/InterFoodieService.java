@@ -12,6 +12,8 @@ public interface InterFoodieService {
 	MemberVO getLoginMember(Map<String, String> paraMap); // 로그인 처리하기
 
 	MemberVO getkakaoLoginMember(String userid); // 카카오로 로그인 처리하기
+
+	void setLoginHistory(Map<String, String> paraMap); // 로그인 히스토리 저장하기
 	
 	
 }

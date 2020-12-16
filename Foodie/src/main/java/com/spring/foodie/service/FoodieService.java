@@ -58,12 +58,20 @@ public class FoodieService implements InterFoodieService {
 			
 			return loginuser;
 		}
-
+		
+		// 카카오로 로그인하기
 		@Override
 		public MemberVO getkakaoLoginMember(String kakaoid) {
 			
 			MemberVO loginuser = dao.getkakaoLoginMember(kakaoid);
 			return loginuser;
+		}
+		
+		// 로그인 히스토리 저장하기
+		@Override
+		public void setLoginHistory(Map<String, String> paraMap) {
+			
+			dao.setLoginHistory(paraMap);
 		}
 	
 	

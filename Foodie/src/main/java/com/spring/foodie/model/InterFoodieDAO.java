@@ -10,6 +10,8 @@ public interface InterFoodieDAO {
 
 	MemberVO getkakaoLoginMember(String kakaoid); // 카카오로 로그인하기
 	
+	void setLoginHistory(Map<String, String> paraMap); // 일반 로그인 기록하기
+	
 	
 }
 
