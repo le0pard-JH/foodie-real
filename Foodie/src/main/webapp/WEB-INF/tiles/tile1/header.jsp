@@ -31,31 +31,39 @@
 
 <script type="text/javascript">
 
+	
 	$(document).ready(function(){
+		$("input#searchWord").focus();
+		
+		
+		$("input#searchWord").keyup(function(event){
+			if(event.keyCode == 13) {
+				// 엔터를 했을 경우 
+				goSearch();
+			}
+		});
 		
 		
 		
-		
-		
-	});
-
+	});// end of $(document).ready(function(){})-------------------------------------------------- 
+	
+	 
+	
 function goSearch() {
-
-		if( $("input#searchWord").val() == "" ){
+	
+		if( $("input#searchWord").val() == "" && $("input#searchWord").val() == null){
 			alert('검색어를 입력하세요.');
 			return;
 		}
 	
-		$("input#searchWord").keyup(function(event){
-			if(event.keyCode == 13) { // 엔터를 했을 경우
-				goSearch(); //검색실행
-			}
-		});
+		
 	
 	var frm = document.searchFrm;
 	frm.method = "GET";
 	frm.action = "<%= request.getContextPath()%>/list.food";
 	frm.submit();
+	
+	
 }// end of function goSearch() {}-----------------------
 
 </script>
@@ -110,8 +118,8 @@ function goSearch() {
                             <form name="searchFrm">
                                 <div class="select__option">
                                     <select name="searchType" id="searchType">
-                                        <option selected>지역</option> <!-- 경기도~제주도 -->
-                                        <option value="">서울특별시</option>                                       
+                                        <option value="">지역</option> 
+                                      <!--  <option value="">서울특별시</option>                                       
                                         <option value="">인천광역시</option>
                                         <option value="">대전광역시</option>
                                         <option value="">대구광역시</option>
@@ -128,23 +136,23 @@ function goSearch() {
                                         <option value="">전라남도</option>
                                         <option value="">경상북도</option>
                                         <option value="">경상남도</option>
-                                        <option value="">제주도</option>
+                                        <option value="">제주도</option>-->
                                     </select>
                                 </div>
                                 <div class="select__option">
                                     <select name="searchType2" id="searchType2">
                                         <option selected>세부지역</option>
+                                  <!--  <option value="">세부지역</option>
                                         <option value="">세부지역</option>
                                         <option value="">세부지역</option>
                                         <option value="">세부지역</option>
-                                        <option value="">세부지역</option>
-                                        <option value="">세부지역</option>
+                                        <option value="">세부지역</option>-->
                                     </select>
                                 </div>
                                 <input type="text" name="searchWord" id="searchWord" placeholder="검색어를 입력하세요.">
                                 <button type="button" id="btnSearch" onclick="goSearch()">검색</button>
                             </form>
-                            
+                            <!-- <div id="displayList" style="border:solid 0px gray; float:right; border-top:0px; width:600px; height:150px; margin-left:70px; margin-top:-1px; overflow:auto;"></div> -->
                             
                         </div>
                     </div>
