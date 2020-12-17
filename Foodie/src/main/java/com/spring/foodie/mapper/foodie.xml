@@ -34,6 +34,14 @@
 			insert into tbl_loginhistory(fk_email, logindate, clientip)
 	    	values(#{email}, default, #{clientip})  
 	</insert>
+	
+	<!-- == 로그인 갭 가져오기 == -->
+	<select id="getloginHistoryGap" resultType="com.spring.foodie.model.LoginHistoryVO" parameterType="String">     
+	select trunc( months_between(sysdate, max(logindate)) ) AS lastlogingap
+    from tbl_loginhistory 
+    where fk_email = #{email} 
+	</select>
+	
 		
 	
 	

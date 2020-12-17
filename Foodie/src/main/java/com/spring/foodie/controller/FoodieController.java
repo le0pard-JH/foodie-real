@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.foodie.common.FileManager;
-import com.spring.foodie.common.Sha256;
+import com.spring.foodie.model.LoginHistoryVO;
 import com.spring.foodie.model.MemberVO;
-import com.spring.foodie.service.*;
+import com.spring.foodie.service.InterFoodieService;
 
 
 @Component
@@ -77,7 +77,26 @@ public class FoodieController {
 			
 			return mav;
 			
-		} 
+		}
+		
+		
+		
+		LoginHistoryVO historyVO=service.getloginHistoryGap(email);
+		
+		if ( Integer.parseInt(historyVO.getLastlogingap()) >= 12) {
+			
+			loginuser.setIdle("1");
+			String message = "오랫동안 접속하지 않으셔서 아이디가 휴먼처리 되었습니다.";
+			String loc = "javascript:history.back()";
+
+			mav.addObject("message", message);
+			mav.addObject("loc", loc);
+
+			mav.setViewName("msg");
+		
+			return mav;
+			
+		}
 		
 		String clientip = request.getLocalAddr();
 		paraMap.put("clientip", clientip);
@@ -128,6 +147,22 @@ public class FoodieController {
 		
 		Map<String, String> paraMap = new HashMap<>();
 		
+		LoginHistoryVO historyVO=service.getloginHistoryGap(email);
+		
+		if ( Integer.parseInt(historyVO.getLastlogingap()) >= 12) {
+			
+			loginuser.setIdle("1");
+			String message = "오랫동안 접속하지 않으셔서 아이디가 휴먼처리 되었습니다.";
+			String loc = "javascript:history.back()";
+
+			mav.addObject("message", message);
+			mav.addObject("loc", loc);
+
+			mav.setViewName("msg");
+		
+			return mav;
+			
+		}
 		
 		paraMap.put("clientip", clientip);
 		paraMap.put("email", email);

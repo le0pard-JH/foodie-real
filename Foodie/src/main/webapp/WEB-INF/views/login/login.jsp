@@ -120,6 +120,7 @@
 	border-bottom: 1px solid #999;
 	outline: none;
 	background: transparent;
+	display: block;
 }
 
 .submit {
@@ -149,9 +150,6 @@ span {
 	left: 50px;
 }
 
-#register {
-	left: 450px;
-}
 
 .kakao {
 	width: 240px;
@@ -171,27 +169,16 @@ span {
 <script>
 
 
-
-var login = $("#login");
-var register = $("#register");
-var btn = $("#btn");
-
-
-function login(){
-    x.css("left", "50px");
-    y.css("left", "450");
-    z.css("left", "0");
-    
-}
-
-function register(){
+$("button#findEmail").click(function () {
+	
+		
+	});
+	
+$("button#findPwd").click(function () {
 	
 	
-    location.href="/foodie/signup.food"; 
-	
+});	
 
-    
-}
 
 
 // ============= 카카오로 로그인 하기 시작 ============= 
@@ -308,13 +295,12 @@ function loginWithKakao() {
 		<div class="form-wrap">
 			<div class="button-wrap">
 				<div id="btn"></div>
-				<button type="button" class="togglebtn" onclick="login();">LOGIN</button>
-				<button type="button" class="togglebtn" onclick="register();">REGISTER</button>
+				<button type="button" class="togglebtn" onclick="login()">LOG IN</button>
+                <button type="button" class="togglebtn" onclick="register()">REGISTER</button>
 			</div>
-
 			<div class="social-icons">
 
-				<a href="javascript:loginWithKakao()"><img src="<%= ctxPath %>/resources/img/login/카카오.png"> </a>
+				<a href="javascript:loginWithKakao()"><img src="<%= ctxPath %>/resources/img/login/카카오.png"></a>
 				<img src="<%= ctxPath %>/resources/img/login/gl.png" alt="google">
 			</div>
 
@@ -329,7 +315,8 @@ function loginWithKakao() {
 				<button class="submit">Login</button>
 
 			</form>
-
+			<button class="submit" id="findEmail" style="margin-top: 185pt; margin-bottom: 10pt; width: 238pt;">Email 찾기</button>
+			<button class="submit" id="findPwd">비밀번호 찾기</button>
 			<%-- 카카오 로그인 --%>
 			<form name="kakaoLoginFrm">
 				<input type="hidden" name="email" />

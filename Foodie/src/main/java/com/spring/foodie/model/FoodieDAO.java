@@ -64,14 +64,20 @@ public class FoodieDAO implements InterFoodieDAO {
 	}
 	
 	
-	
-	 // https://all-record.tistory.com/168
+	 // https://all-record.tistory.com/168    IPV6  ==> IPV4
 	 // 로그인 히스토리 기록하기
 	@Override
 	public void setLoginHistory(Map<String, String> paraMap) {
 		
 		sqlsession.insert("foodie.setLoginHistory", paraMap);
 		
+	}
+	
+	// 
+	@Override
+	public LoginHistoryVO getloginHistoryGap(String email) {
+		LoginHistoryVO historyvo = sqlsession.selectOne("foodie.getloginHistoryGap", email);
+		return historyvo;
 	}
 
 
