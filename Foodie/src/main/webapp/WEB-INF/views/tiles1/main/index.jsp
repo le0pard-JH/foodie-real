@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 <%
-	String ctxPath = request.getContextPath();
+   String ctxPath = request.getContextPath();
   //       /board 
 %>
 
@@ -21,19 +21,19 @@
 <style type="text/css">
 
 body{
-	font-family: Verdana;
+   font-family: Verdana;
 }
 .top_list{
 /* == topList 스팬태그 가운데로 == */
-		 position: relative; 
+       position: relative; 
        /*  bottom: 90px;
         right:80px; */
         color:white;
         font-size:23px;
         font-weight:bold;
         text-align:center;
-       	float:right;
-       	
+          float:right;
+          
 }
 .top_list2{
 /* == topList 스팬태그 가운데로 == */
@@ -44,20 +44,20 @@ body{
         font-size:17px;
         font-weight:bold;
         text-align:center;
-       	float:right;
-       	
+          float:right;
+          
 }
 
 div.bright{
-	/* position:relative;
-	width:500px;
-	height:300px; */
-	/* filter:brightness(100%); */
+   /* position:relative;
+   width:500px;
+   height:300px; */
+   /* filter:brightness(100%); */
 }
 div.set-bg{
-	/* position:relative; */
-	/* width:380px; */
-	/* filter:brightness(80%); */
+   /* position:relative; */
+   /* width:380px; */
+   /* filter:brightness(80%); */
 }
 
 </style>
@@ -155,7 +155,7 @@ div.set-bg{
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">
                                     <span class="flaticon-031-delivery"></span>
                                    주점                   
                                 </a>
@@ -198,8 +198,8 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">가로수길 처음와봐?</p>
                                            </div>
-                                	    </div>
-                                	  <!--   </a> -->
+                                       </div>
+                                     <!--   </a> -->
                                    </div>
                                </div>
                                     
@@ -214,7 +214,7 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">명동이 요즘 핫하다던데..</p>
                                             </div>
-                                	    </div>
+                                       </div>
                                    </div>
                                  </div> 
                                    
@@ -228,7 +228,7 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">이태원 클라쓰!!</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                    </div>
                                  </div> 
                                  
@@ -243,7 +243,7 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">아직도 여기 모르는사람 있어?</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                    </div>
                                  </div> 
                                  
@@ -258,7 +258,7 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">강남의 핫한 맛집은?</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                    </div>
                                  </div> 
                          </div>
@@ -281,7 +281,7 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">회식 할 곳 찾아?</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                      </div>
                                  </div> 
                                 
@@ -296,7 +296,7 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">삼쏘 한잔?</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                      </div>
                                  </div> 
                                  
@@ -311,12 +311,12 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">면치기 하고 싶은 날</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                      </div>
                                  </div> 
                                
 
-								<div class="col-lg-4 col-md-6">
+                        <div class="col-lg-4 col-md-6">
                                      <div class="listing__item">
                                         <div class="listing__item__pic set-bg top_list_image" data-setbg="https://mp-seoul-image-production-s3.mangoplate.com/37398/593070_1472836660192_7917?fit=around|359:240&crop=359:240;*,*&output-format=jpg&output-quality=80">
                                         
@@ -326,7 +326,7 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">든든한 국밥 먹을러 갈래요?</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                      </div>
                                  </div> 
                                  
@@ -342,7 +342,7 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">겨울엔 역시 탕이지!</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                      </div>
                                  </div> 
                                 
@@ -357,10 +357,10 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">족발 매니아들만 안다는 그 곳들</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                    </div>
                                  </div> 
-                        	 </div>
+                            </div>
                          </div>
                                  
                          <!-- 일식 -->
@@ -377,7 +377,7 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">스시 매니아들이 자주 가는곳은?</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                    </div>
                                  </div> 
                                  
@@ -392,7 +392,7 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">진한 육수에 두툼한 차슈와 반숙 계란!</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                    </div>
                                  </div> 
                                  
@@ -407,7 +407,7 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">이건 못참지!!</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                    </div>
                                  </div> 
                                  
@@ -422,7 +422,7 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">혼술하기 좋은 곳</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                    </div>
                                  </div> 
                               </div>
@@ -447,7 +447,7 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">매콤한거 땡기는 날!</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                    </div>
                                  </div> 
                                  
@@ -462,7 +462,7 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">칭따오랑 같이 시키는게 국룰</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                    </div>
                                  </div> 
                                  
@@ -477,412 +477,147 @@ div.set-bg{
                                             <br><br>
                                             <p class="top_list2">한번 빠지면 헤어나올 수 없는 이 중독성!</p>
                                            </div>
-                                	    </div>
+                                       </div>
                                     </div>
                                  </div> 
                                  
                                  
                                  
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="listing__item">
-                                        <div class="listing__item__pic set-bg" data-setbg="<%=ctxPath %>/resources/img/listing/list-6.jpg">
-                                            <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_icon-6.png" alt="">
-                                            <div class="listing__item__pic__tag">Popular</div>
-                                            <div class="listing__item__pic__btns">
-                                                <a href="#"><span class="icon_zoom-in_alt"></span></a>
-                                                <a href="#"><span class="icon_heart_alt"></span></a>
-                                            </div>
-                                        </div>
-                                        <div class="listing__item__text">
-                                            <div class="listing__item__text__inside">
-                                                <h5>Fish cooked with fishsauce</h5>
-                                                <div class="listing__item__text__rating">
-                                                    <div class="listing__item__rating__star">
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star-half_alt"></span>
-                                                    </div>
-                                                    <h6>$40 - $70</h6>
-                                                </div>
-                                                <ul>
-                                                    <li><span class="icon_pin_alt"></span> 2604 E Drachman St. Tucson,
-                                                        Arizona, United States</li>
-                                                    <li><span class="icon_phone"></span> (+12) 345-678-910</li>
-                                                </ul>
-                                            </div>
-                                            <div class="listing__item__text__info">
-                                                <div class="listing__item__text__info__left">
-                                                    <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_small_icon-3.png" alt="">
-                                                    <span>Hotel</span>
-                                                </div>
-                                                <div class="listing__item__text__info__right">Open Now</div>
-                                            </div>
-                                        </div>
+                               <div class="col-lg-4 col-md-6">
+                                     <div class="listing__item">
+                                        <div class="listing__item__pic set-bg top_list_image" data-setbg="https://search.pstatic.net/common/?src=http%3A%2F%2Fpost.phinf.naver.net%2F20161004_171%2F1475572826176gpE2V_JPEG%2FIlCAjoSCC2_36MC3qRjUBWJVKi3g.jpg&type=sc960_832">
+                                        
+                                           <!--  <img src="resources/images/listing/list_icon-1.png" alt=""> -->
+                                             <div class="listing__item__pic__tag top_rate">Top Rate</div>
+                                            <div class="listing__item__pic__btns"><span class="top_list">짜장면 맛집 베스트</span>
+                                            <br><br>
+                                            <p class="top_list2">국민들의 음식</p>
+                                           </div>
+                                       </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                                 </div> 
+                             </div>
+                             </div>    
+                          
+                          
+                          
+                       <!-- 양식 -->
+                       
+                       
+                                 
                         <div class="tab-pane" id="tabs-5" role="tabpanel">
                             <div class="row">
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="listing__item">
-                                        <div class="listing__item__pic set-bg" data-setbg="<%=ctxPath %>/resources/img/listing/list-1.jpg">
-                                            <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_icon-1.png" alt="">
-                                            <div class="listing__item__pic__tag">Popular</div>
-                                            <div class="listing__item__pic__btns">
-                                                <a href="#"><span class="icon_zoom-in_alt"></span></a>
-                                                <a href="#"><span class="icon_heart_alt"></span></a>
-                                            </div>
-                                        </div>
-                                        <div class="listing__item__text">
-                                            <div class="listing__item__text__inside">
-                                                <h5>Chinese Sausage Restaurant</h5>
-                                                <div class="listing__item__text__rating">
-                                                    <div class="listing__item__rating__star">
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star-half_alt"></span>
-                                                    </div>
-                                                    <h6>$40 - $70</h6>
-                                                </div>
-                                                <ul>
-                                                    <li><span class="icon_pin_alt"></span> 236 Littleton St. New
-                                                        Philadelphia, Ohio, United States</li>
-                                                    <li><span class="icon_phone"></span> (+12) 345-678-910</li>
-                                                </ul>
-                                            </div>
-                                            <div class="listing__item__text__info">
-                                                <div class="listing__item__text__info__left">
-                                                    <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_small_icon-1.png" alt="">
-                                                    <span>Restaurant</span>
-                                                </div>
-                                                <div class="listing__item__text__info__right">Open Now</div>
-                                            </div>
-                                        </div>
+                                 <div class="col-lg-4 col-md-6">
+                                     <div class="listing__item">
+                                        <div class="listing__item__pic set-bg top_list_image" data-setbg="https://mp-seoul-image-production-s3.mangoplate.com/1062072_1606315708617361.jpg?fit=around|359:240&crop=359:240;*,*&output-format=jpg&output-quality=80">
+                                        
+                                           <!--  <img src="resources/images/listing/list_icon-1.png" alt=""> -->
+                                             <div class="listing__item__pic__tag top_rate">Top Rate</div>
+                                            <div class="listing__item__pic__btns"><span class="top_list">경양식 맛집 베스트</span>
+                                            <br><br>
+                                            <p class="top_list2">칼 질 좀 해볼까?</p>
+                                           </div>
+                                       </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="listing__item">
-                                        <div class="listing__item__pic set-bg" data-setbg="<%=ctxPath %>/resources/img/listing/list-2.jpg">
-                                            <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_icon-2.png" alt="">
-                                            <div class="listing__item__pic__tag top_rate">Top Rate</div>
-                                            <div class="listing__item__pic__btns">
-                                                <a href="#"><span class="icon_zoom-in_alt"></span></a>
-                                                <a href="#"><span class="icon_heart_alt"></span></a>
-                                            </div>
-                                        </div>
-                                        <div class="listing__item__text">
-                                            <div class="listing__item__text__inside">
-                                                <h5>Shrimp floured and fried</h5>
-                                                <div class="listing__item__text__rating">
-                                                    <div class="listing__item__rating__star">
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star-half_alt"></span>
-                                                    </div>
-                                                    <h6>$40 - $70</h6>
-                                                </div>
-                                                <ul>
-                                                    <li><span class="icon_pin_alt"></span> 1012 Vesper Dr. Columbus,
-                                                        Georgia(GA), United States</li>
-                                                    <li><span class="icon_phone"></span> (+12) 345-678-910</li>
-                                                </ul>
-                                            </div>
-                                            <div class="listing__item__text__info">
-                                                <div class="listing__item__text__info__left">
-                                                    <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_small_icon-2.png" alt="">
-                                                    <span>Food & Drink</span>
-                                                </div>
-                                                <div class="listing__item__text__info__right closed">Closed</div>
-                                            </div>
-                                        </div>
+                                 </div> 
+                              
+                             
+                             
+                                 <div class="col-lg-4 col-md-6">
+                                     <div class="listing__item">
+                                        <div class="listing__item__pic set-bg top_list_image" data-setbg="https://mp-seoul-image-production-s3.mangoplate.com/52544_1517882427712991.jpg?fit=around|359:240&crop=359:240;*,*&output-format=jpg&output-quality=80">
+                                        
+                                           <!--  <img src="resources/images/listing/list_icon-1.png" alt=""> -->
+                                             <div class="listing__item__pic__tag top_rate">Top Rate</div>
+                                            <div class="listing__item__pic__btns"><span class="top_list">스테이크&바베큐 맛집 베스트</span>
+                                            <br><br>
+                                            <p class="top_list2">간만에 고기좀 뜯고 싶을 떄</p>
+                                           </div>
+                                       </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="listing__item">
-                                        <div class="listing__item__pic set-bg" data-setbg="<%=ctxPath %>/resources/img/listing/list-3.jpg">
-                                            <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_icon-3.png" alt="">
-                                            <div class="listing__item__pic__tag">Popular</div>
-                                            <div class="listing__item__pic__btns">
-                                                <a href="#"><span class="icon_zoom-in_alt"></span></a>
-                                                <a href="#"><span class="icon_heart_alt"></span></a>
-                                            </div>
-                                        </div>
-                                        <div class="listing__item__text">
-                                            <div class="listing__item__text__inside">
-                                                <h5>Sweet and sour pork ribs</h5>
-                                                <div class="listing__item__text__rating">
-                                                    <div class="listing__item__rating__star">
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star-half_alt"></span>
-                                                    </div>
-                                                    <h6>$40 - $70</h6>
-                                                </div>
-                                                <ul>
-                                                    <li><span class="icon_pin_alt"></span> 251 Wiley St. Forks,
-                                                        Washington(WA), United States</li>
-                                                    <li><span class="icon_phone"></span> (+12) 345-678-910</li>
-                                                </ul>
-                                            </div>
-                                            <div class="listing__item__text__info">
-                                                <div class="listing__item__text__info__left">
-                                                    <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_small_icon-1.png" alt="">
-                                                    <span>Restaurant</span>
-                                                </div>
-                                                <div class="listing__item__text__info__right">Open Now</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="listing__item">
-                                        <div class="listing__item__pic set-bg" data-setbg="<%=ctxPath %>/resources/img/listing/list-4.jpg">
-                                            <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_icon-4.png" alt="">
-                                            <div class="listing__item__pic__tag">Popular</div>
-                                            <div class="listing__item__pic__btns">
-                                                <a href="#"><span class="icon_zoom-in_alt"></span></a>
-                                                <a href="#"><span class="icon_heart_alt"></span></a>
-                                            </div>
-                                        </div>
-                                        <div class="listing__item__text">
-                                            <div class="listing__item__text__inside">
-                                                <h5>Crab fried with tamarind</h5>
-                                                <div class="listing__item__text__rating">
-                                                    <div class="listing__item__rating__star">
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star-half_alt"></span>
-                                                    </div>
-                                                    <h6>$40 - $70</h6>
-                                                </div>
-                                                <ul>
-                                                    <li><span class="icon_pin_alt"></span> 14320 Keenes Mill Rd.
-                                                        Cottondale, Alabama(AL), United States</li>
-                                                    <li><span class="icon_phone"></span> (+12) 345-678-910</li>
-                                                </ul>
-                                            </div>
-                                            <div class="listing__item__text__info">
-                                                <div class="listing__item__text__info__left">
-                                                    <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_small_icon-3.png" alt="">
-                                                    <span>Hotel</span>
-                                                </div>
-                                                <div class="listing__item__text__info__right closed">Closed</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="listing__item">
-                                        <div class="listing__item__pic set-bg" data-setbg="<%=ctxPath %>/resources/img/listing/list-6.jpg">
-                                            <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_icon-6.png" alt="">
-                                            <div class="listing__item__pic__tag">Popular</div>
-                                            <div class="listing__item__pic__btns">
-                                                <a href="#"><span class="icon_zoom-in_alt"></span></a>
-                                                <a href="#"><span class="icon_heart_alt"></span></a>
-                                            </div>
-                                        </div>
-                                        <div class="listing__item__text">
-                                            <div class="listing__item__text__inside">
-                                                <h5>Fish cooked with fishsauce</h5>
-                                                <div class="listing__item__text__rating">
-                                                    <div class="listing__item__rating__star">
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star-half_alt"></span>
-                                                    </div>
-                                                    <h6>$40 - $70</h6>
-                                                </div>
-                                                <ul>
-                                                    <li><span class="icon_pin_alt"></span> 2604 E Drachman St. Tucson,
-                                                        Arizona, United States</li>
-                                                    <li><span class="icon_phone"></span> (+12) 345-678-910</li>
-                                                </ul>
-                                            </div>
-                                            <div class="listing__item__text__info">
-                                                <div class="listing__item__text__info__left">
-                                                    <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_small_icon-3.png" alt="">
-                                                    <span>Hotel</span>
-                                                </div>
-                                                <div class="listing__item__text__info__right">Open Now</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                 </div> 
+                                
+                               
+                             </div>
+                           </div>    
+                            
+                        
+                        <!-- 카페&제과 -->
+                        
                         <div class="tab-pane" id="tabs-6" role="tabpanel">
                             <div class="row">
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="listing__item">
-                                        <div class="listing__item__pic set-bg" data-setbg="<%=ctxPath %>/resources/img/listing/list-1.jpg">
-                                            <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_icon-1.png" alt="">
-                                            <div class="listing__item__pic__tag">Popular</div>
-                                            <div class="listing__item__pic__btns">
-                                                <a href="#"><span class="icon_zoom-in_alt"></span></a>
-                                                <a href="#"><span class="icon_heart_alt"></span></a>
-                                            </div>
-                                        </div>
-                                        <div class="listing__item__text">
-                                            <div class="listing__item__text__inside">
-                                                <h5>Chinese Sausage Restaurant</h5>
-                                                <div class="listing__item__text__rating">
-                                                    <div class="listing__item__rating__star">
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star-half_alt"></span>
-                                                    </div>
-                                                    <h6>$40 - $70</h6>
-                                                </div>
-                                                <ul>
-                                                    <li><span class="icon_pin_alt"></span> 236 Littleton St. New
-                                                        Philadelphia, Ohio, United States</li>
-                                                    <li><span class="icon_phone"></span> (+12) 345-678-910</li>
-                                                </ul>
-                                            </div>
-                                            <div class="listing__item__text__info">
-                                                <div class="listing__item__text__info__left">
-                                                    <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_small_icon-1.png" alt="">
-                                                    <span>Restaurant</span>
-                                                </div>
-                                                <div class="listing__item__text__info__right">Open Now</div>
-                                            </div>
-                                        </div>
+                                 <div class="col-lg-4 col-md-6">
+                                     <div class="listing__item">
+                                        <div class="listing__item__pic set-bg top_list_image" data-setbg=https://mp-seoul-image-production-s3.mangoplate.com/1843271_1606618816933055.jpg?fit=around|359:240&crop=359:240;*,*&output-format=jpg&output-quality=80>
+                                        
+                                           <!--  <img src="resources/images/listing/list_icon-1.png" alt=""> -->
+                                             <div class="listing__item__pic__tag top_rate">Top Rate</div>
+                                            <div class="listing__item__pic__btns"><span class="top_list">카페&디저트 베스트</span>
+                                            <br><br>
+                                            <p class="top_list2">커피 한잔의 여유</p>
+                                           </div>
+                                       </div>
                                     </div>
-                                </div>
+                                 </div> 
+                                 
                                 <div class="col-lg-4 col-md-6">
-                                    <div class="listing__item">
-                                        <div class="listing__item__pic set-bg" data-setbg="<%=ctxPath %>/resources/img/listing/list-2.jpg">
-                                            <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_icon-2.png" alt="">
-                                            <div class="listing__item__pic__tag top_rate">Top Rate</div>
-                                            <div class="listing__item__pic__btns">
-                                                <a href="#"><span class="icon_zoom-in_alt"></span></a>
-                                                <a href="#"><span class="icon_heart_alt"></span></a>
-                                            </div>
-                                        </div>
-                                        <div class="listing__item__text">
-                                            <div class="listing__item__text__inside">
-                                                <h5>Shrimp floured and fried</h5>
-                                                <div class="listing__item__text__rating">
-                                                    <div class="listing__item__rating__star">
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star-half_alt"></span>
-                                                    </div>
-                                                    <h6>$40 - $70</h6>
-                                                </div>
-                                                <ul>
-                                                    <li><span class="icon_pin_alt"></span> 1012 Vesper Dr. Columbus,
-                                                        Georgia(GA), United States</li>
-                                                    <li><span class="icon_phone"></span> (+12) 345-678-910</li>
-                                                </ul>
-                                            </div>
-                                            <div class="listing__item__text__info">
-                                                <div class="listing__item__text__info__left">
-                                                    <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_small_icon-2.png" alt="">
-                                                    <span>Food & Drink</span>
-                                                </div>
-                                                <div class="listing__item__text__info__right closed">Closed</div>
-                                            </div>
-                                        </div>
+                                     <div class="listing__item">
+                                        <div class="listing__item__pic set-bg top_list_image" data-setbg="https://mp-seoul-image-production-s3.mangoplate.com/added_restaurants/9239_1488597035247996.jpg?fit=around|359:240&crop=359:240;*,*&output-format=jpg&output-quality=80">
+                                        
+                                           <!--  <img src="resources/images/listing/list_icon-1.png" alt=""> -->
+                                             <div class="listing__item__pic__tag top_rate">Top Rate</div>
+                                            <div class="listing__item__pic__btns"><span class="top_list">빵집 베스트</span>
+                                            <br><br>
+                                            <p class="top_list2">빵 매니아들이 자주 가는곳</p>
+                                           </div>
+                                       </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="listing__item">
-                                        <div class="listing__item__pic set-bg" data-setbg="<%=ctxPath %>/resources/img/listing/list-4.jpg">
-                                            <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_icon-4.png" alt="">
-                                            <div class="listing__item__pic__tag">Popular</div>
-                                            <div class="listing__item__pic__btns">
-                                                <a href="#"><span class="icon_zoom-in_alt"></span></a>
-                                                <a href="#"><span class="icon_heart_alt"></span></a>
-                                            </div>
-                                        </div>
-                                        <div class="listing__item__text">
-                                            <div class="listing__item__text__inside">
-                                                <h5>Crab fried with tamarind</h5>
-                                                <div class="listing__item__text__rating">
-                                                    <div class="listing__item__rating__star">
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star-half_alt"></span>
-                                                    </div>
-                                                    <h6>$40 - $70</h6>
-                                                </div>
-                                                <ul>
-                                                    <li><span class="icon_pin_alt"></span> 14320 Keenes Mill Rd.
-                                                        Cottondale, Alabama(AL), United States</li>
-                                                    <li><span class="icon_phone"></span> (+12) 345-678-910</li>
-                                                </ul>
-                                            </div>
-                                            <div class="listing__item__text__info">
-                                                <div class="listing__item__text__info__left">
-                                                    <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_small_icon-3.png" alt="">
-                                                    <span>Hotel</span>
-                                                </div>
-                                                <div class="listing__item__text__info__right closed">Closed</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="listing__item">
-                                        <div class="listing__item__pic set-bg" data-setbg="<%=ctxPath %>/resources/img/listing/list-5.jpg">
-                                            <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_icon-5.png" alt="">
-                                            <div class="listing__item__pic__tag hot_deal">Hot Deal</div>
-                                            <div class="listing__item__pic__btns">
-                                                <a href="#"><span class="icon_zoom-in_alt"></span></a>
-                                                <a href="#"><span class="icon_heart_alt"></span></a>
-                                            </div>
-                                        </div>
-                                        <div class="listing__item__text">
-                                            <div class="listing__item__text__inside">
-                                                <h5>Tortoise grilled on salt</h5>
-                                                <div class="listing__item__text__rating">
-                                                    <div class="listing__item__rating__star">
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star"></span>
-                                                        <span class="icon_star-half_alt"></span>
-                                                    </div>
-                                                    <h6>$40 - $70</h6>
-                                                </div>
-                                                <ul>
-                                                    <li><span class="icon_pin_alt"></span> 236 Littleton St. New
-                                                        Philadelphia, Ohio, United States</li>
-                                                    <li><span class="icon_phone"></span> (+12) 345-678-910</li>
-                                                </ul>
-                                            </div>
-                                            <div class="listing__item__text__info">
-                                                <div class="listing__item__text__info__left">
-                                                    <<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/listing/list_small_icon-4.png" alt="">
-                                                    <span>Shopping</span>
-                                                </div>
-                                                <div class="listing__item__text__info__right">Open Now</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                 </div> 
+                                 
+                             
                             </div>
                         </div>
+                        
+                        
+                        <!-- 주점 -->
+                        
+                         
+                         <div class="tab-pane" id="tabs-7" role="tabpanel">
+                            <div class="row">
+                                 <div class="col-lg-4 col-md-6">
+                                     <div class="listing__item">
+                                        <div class="listing__item__pic set-bg top_list_image" data-setbg="https://mp-seoul-image-production-s3.mangoplate.com/added_restaurants/34450_1446264625748.jpg?fit=around|359:240&crop=359:240;*,*&output-format=jpg&output-quality=80">
+                                        
+                                           <!--  <img src="resources/images/listing/list_icon-1.png" alt=""> -->
+                                             <div class="listing__item__pic__tag top_rate">Top Rate</div>
+                                            <div class="listing__item__pic__btns"><span class="top_list">감성주점 베스트</span>
+                                            <br><br>
+                                            <p class="top_list2">분위기에 취해봤니?</p>
+                                           </div>
+                                       </div>
+                                    </div>
+                                 </div> 
+                              
+                             
+                             
+                                 <div class="col-lg-4 col-md-6">
+                                     <div class="listing__item">
+                                        <div class="listing__item__pic set-bg top_list_image" data-setbg="https://mp-seoul-image-production-s3.mangoplate.com/added_restaurants/63176_1460723956278258.jpg?fit=around|359:240&crop=359:240;*,*&output-format=jpg&output-quality=80">
+                                        
+                                           <!--  <img src="resources/images/listing/list_icon-1.png" alt=""> -->
+                                             <div class="listing__item__pic__tag top_rate">Top Rate</div>
+                                            <div class="listing__item__pic__btns"><span class="top_list">와인바 베스트</span>
+                                            <br><br>
+                                            <p class="top_list2">혼술 하기 좋은 날</p>
+                                           </div>
+                                       </div>
+                                    </div>
+                                 </div> 
+                                
+                              
+                             </div>
+                           </div>   
+                           
                     </div>
                 </div>
             </div>
@@ -1077,4 +812,6 @@ div.set-bg{
     <script src="<%=ctxPath %>/resources/js/owl.carousel.min.js"></script>
     <script src="<%=ctxPath %>/resources/js/main.js"></script>
 </body>
+
+
 
