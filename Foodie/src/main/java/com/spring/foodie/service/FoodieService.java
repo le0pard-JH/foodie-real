@@ -80,6 +80,13 @@ public class FoodieService implements InterFoodieService {
 			LoginHistoryVO historyvo = dao.getloginHistoryGap(email);
 			return historyvo;
 		}
+
+		@Override
+		public int registerMember(Map<String, String> paraMap)  {
+			
+			int n = dao.registerMember(paraMap);
+			return 0;
+		}
 	
 	
 	

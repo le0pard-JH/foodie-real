@@ -42,9 +42,11 @@
     where fk_email = #{email} 
 	</select>
 	
-		
 	
-	
+	<insert id="registerMember" parameterType="HashMap">
+		insert into tbl_member(no, type, kakaoid, name, email, pwd, mobile, registerday, status, idle)
+	    values(seq_memberno.nextval, default, #{kakaoid}, #{name}, #{email}, #{pwd}, #{mobile}, default, default, default)	
+	</insert>                                        
 </mapper>
 
 

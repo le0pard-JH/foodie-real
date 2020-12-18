@@ -401,6 +401,14 @@
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
 		</dependency>
+		
+		
+		<dependency>
+			<groupId>net.nurigo</groupId>
+			<artifactId>javaSDK</artifactId>
+			<version>2.2</version>
+		</dependency>
+		
 		<!-- 지훈 12-17 추가 끝-->       
 	</dependencies>
     <build>

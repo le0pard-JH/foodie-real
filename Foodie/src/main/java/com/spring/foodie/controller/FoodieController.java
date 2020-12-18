@@ -1,7 +1,6 @@
 package com.spring.foodie.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +18,9 @@ import com.spring.foodie.common.FileManager;
 import com.spring.foodie.model.LoginHistoryVO;
 import com.spring.foodie.model.MemberVO;
 import com.spring.foodie.service.InterFoodieService;
+
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 
 @Component
@@ -203,13 +205,119 @@ public class FoodieController {
 
 		return mav;
 	}
+	
+	// === sns 문자보내기  === //
+	@RequestMapping(value = "/sendSns.food")
+	public ModelAndView sendSns(ModelAndView mav, HttpServletRequest request) throws CoolsmsException {
 
+		
+			String api_key = "NCSAB7YSHDFCVJEG"; 
+		
+			String api_secret = "UZJM0KAZVB7MKVPXR9SXJS7PGTMCJKEU";  
+			
+			Message coolsms = new Message(api_key, api_secret);
+			
+					
+			String mobile = request.getParameter("mobile");
+			String smsContent = request.getParameter("smsContent");
+			
+			// == 4개 파라미터(to, from, type, text)는 필수사항이다. == 
+			HashMap<String, String> paraMap = new HashMap<String, String>();
+			paraMap.put("to", mobile); // 수신번호
+			paraMap.put("from", "01095451492"); // 발신번호
+			paraMap.put("type", "SMS"); // Message type ( SMS(단문), LMS(장문), MMS, ATA )
+			paraMap.put("text", smsContent); // 문자내용    
+			paraMap.put("app_version", "JAVA SDK v2.2"); // application name and version
+					
+			
+			org.json.simple.JSONObject jsobj = (org.json.simple.JSONObject) coolsms.send(paraMap);
+			/*
+			   org.json.JSONObject 이 아니라 
+			   org.json.simple.JSONObject 이어야 한다.  
+			*/
+			
+			String json = jsobj.toString();
+			
+		//	System.out.println("~~~~ 확인용 json => " + json);
+			// ~~~~ 확인용 json => {"group_id":"R2GWPBT7UoW308sI","success_count":1,"error_count":0} 
+			
+			request.setAttribute("json", json);
+			
+			mav.setViewName("jsonview");
+			return mav;
+			
+		
+			
+	}
+	
 	@RequestMapping(value = "/signup.food")
 	public String signup(HttpServletRequest request, ModelAndView mav) {
+		
+		
+		if(request.getMethod().equals("GET")) {
+			
+			return "/signup/signup";
+			
+		}
+		
+		else {
+			
 
-
-		return "/signup/signup";
-
+			String email = request.getParameter("email");
+			String name = request.getParameter("name");
+			String pwd = request.getParameter("pwd"); 
+			String hp1 = request.getParameter("hp1"); 
+			String hp2 = request.getParameter("hp2"); 
+			String hp3 = request.getParameter("hp3");
+			String mobile = hp1+hp2+hp3;
+			
+			String kakaoid = request.getParameter("kakaoid");
+			
+			Map<String, String> paraMap = new HashMap<>();
+			
+			paraMap.put("email", email);
+			paraMap.put("name", name);
+			paraMap.put("pwd", pwd);
+			paraMap.put("mobile", mobile);
+			paraMap.put("kakaoid", "0");
+			int n = service.registerMember(paraMap);
+			
+			String message = "";
+			String loc = "";
+			
+			if(n == 1) {
+				message = "회원가입 성공";
+				loc = request.getContextPath()+"/index.food"; // 시작페이지로 이동한다. 
+	
+				
+			}
+			else {
+				message = "회원가입 실패";
+				loc = "javascript:history.back()" ; // 자바스크립트를 이용한 이전페이지로 이동하는것.
+				
+					
+				
+				mav.addObject("message", message);
+				mav.addObject("loc", loc);
+			}
+			
+			
+			
+			return "/login/login";
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	@ResponseBody

@@ -261,9 +261,10 @@
 		});
 		
 		if(!bFlagRequiredInfo) {
+			
 			var frm = document.registerFrm;
-			frm.action = "login.food";
-			frm.method = "post";
+			frm.action = "/foodie/signup.food";
+			frm.method = "POST";
 			frm.submit();
 		}
 		
@@ -275,9 +276,9 @@
 		
 		$.ajax({
     		url:"<%= ctxPath%>/emailDuplicateCheck.food",
-    		data:{"email":$("input#email").val()}, // data 는 /Foodie/member/emailDuplicateCheck.food 로 전송해야할 데이터를 말한다. 
+    		data:{"email":$("input#email").val()}, // data 는 /foodie/emailDuplicateCheck.food 로 전송해야할 데이터를 말한다. 
     		type:"post",
-    		dataType:"json",   // Javascript Standard Object Notation.  dataType은  /Foodie/member/emailDuplicateCheck.food 로 부터 실행되어진 결과물을 받아오는 데이터타입을 말한다. 
+    		dataType:"json",   // Javascript Standard Object Notation.  dataType은  /foodie/emailDuplicateCheck.food 로 부터 실행되어진 결과물을 받아오는 데이터타입을 말한다. 
     		success:function(json){
     			if(json.isExists) {
     				// 입력한 email 이 이미 사용중이라면 
@@ -296,10 +297,11 @@
 		
 	}// end of function isExistEmailCheck()--------------------------
 	
+	
 </script>
 
 
-<div class="row" id="divRegisterFrm">
+<div class="row" id="RegisterFrm">
 	<div class="col-md-12" align="center">
 	<form name="registerFrm">
 	

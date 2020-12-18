@@ -306,9 +306,9 @@ function loginWithKakao() {
 
 
 
-			<form id="login" action="<%=ctxPath%>/loginEnd.food" class="input-group" method="POST">
+			<form id="login" action="<%= ctxPath%>/loginEnd.food" class="input-group" method="POST">
 				<input type="text" name="email" class="input-field" placeholder="User Email" required> 
-				<input type="password" name="pwd"class="input-field" placeholder="Enter Password" required>
+				<input type="password" name="pwd" class="input-field" placeholder="Enter Password" required>
 				<div>
 					<input type="checkbox" class="checkbox">Remember id
 				</div>

@@ -80,5 +80,12 @@ public class FoodieDAO implements InterFoodieDAO {
 		return historyvo;
 	}
 
+	@Override
+	public int registerMember(Map<String, String> paraMap) {
+		int n = sqlsession.insert("foodie.registerMember", paraMap);
+		
+		return n;
+	}
+
 
 }
