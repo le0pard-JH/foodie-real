@@ -19,6 +19,8 @@ public interface InterFoodieService {
 	LoginHistoryVO getloginHistoryGap(String email); // 
 
 	int registerMember(Map<String, String> paraMap); // 회원가입하기
+
+	MemberVO getUserInfo(String email); // 유저정보 가져오기
 	
 	
 }

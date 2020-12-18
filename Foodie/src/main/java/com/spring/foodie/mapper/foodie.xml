@@ -44,9 +44,25 @@
 	
 	
 	<insert id="registerMember" parameterType="HashMap">
-		insert into tbl_member(no, type, kakaoid, name, email, pwd, mobile, registerday, status, idle)
-	    values(seq_memberno.nextval, default, #{kakaoid}, #{name}, #{email}, #{pwd}, #{mobile}, default, default, default)	
-	</insert>                                        
+	insert into tbl_member(no, type, kakaoid, name, email, pwd, mobile,
+	registerday, status, idle)
+	values(seq_memberno.nextval, default, #{kakaoid}, #{name}, #{email}, #{pwd}, #{mobile}, default,
+	default, default)	
+	</insert>    
+	
+<!-- 	<insert id="createAuthKey">
+	insert into userAuth values(#{userEmail}, #{authKey})
+	</insert>
+
+	<update id="userAuth">
+		<![CDATA[update user set userCertification = 1 where (select count(*) from userAuth where userEmail = #{userEmail}) > 0]]>
+	</update> -->
+	
+
+	<select id="getUserInfo" resultType="com.spring.foodie.model.MemberVO" parameterType="String">
+		select * from tbl_member where email = #{email} 
+	</select>
+	                                
 </mapper>
 
 

@@ -2,6 +2,12 @@ package com.spring.foodie.controller;
 
 import java.util.*;
 
+import javax.mail.Address;
+import javax.mail.Authenticator;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.foodie.common.FileManager;
+import com.spring.foodie.common.TempKey;
 import com.spring.foodie.model.LoginHistoryVO;
 import com.spring.foodie.model.MemberVO;
 import com.spring.foodie.service.InterFoodieService;
@@ -212,25 +219,37 @@ public class FoodieController {
 
 		
 			String api_key = "NCSAB7YSHDFCVJEG"; 
-		
 			String api_secret = "UZJM0KAZVB7MKVPXR9SXJS7PGTMCJKEU";  
-			
 			Message coolsms = new Message(api_key, api_secret);
 			
-					
-			String mobile = request.getParameter("mobile");
-			String smsContent = request.getParameter("smsContent");
+			String email = request.getParameter("email");
+			
+			MemberVO member=service.getUserInfo(email);
+			
+			TempKey temkey = new TempKey();
+			String key=temkey.getKey(6, true);
+			
+			String smsContent = member.getName() + "님의 인증번호 는 "+key+" 입니다.";
+			
+			
 			
 			// == 4개 파라미터(to, from, type, text)는 필수사항이다. == 
 			HashMap<String, String> paraMap = new HashMap<String, String>();
-			paraMap.put("to", mobile); // 수신번호
+			paraMap.put("to", member.getMobile()); // 수신번호
 			paraMap.put("from", "01095451492"); // 발신번호
 			paraMap.put("type", "SMS"); // Message type ( SMS(단문), LMS(장문), MMS, ATA )
 			paraMap.put("text", smsContent); // 문자내용    
 			paraMap.put("app_version", "JAVA SDK v2.2"); // application name and version
 					
 			
+			
+			
+			
+			// 문자 내용에 임의난수 처리해서 집어넣고 AJAX 처리해서 view 단에서 사용자가 입력한 값과 원래 난수와 비교해서 같으면 
+			// 비밀번호 재설정하는 방식으로 처리해야함.
+			
 			org.json.simple.JSONObject jsobj = (org.json.simple.JSONObject) coolsms.send(paraMap);
+			
 			/*
 			   org.json.JSONObject 이 아니라 
 			   org.json.simple.JSONObject 이어야 한다.  
@@ -238,18 +257,17 @@ public class FoodieController {
 			
 			String json = jsobj.toString();
 			
-		//	System.out.println("~~~~ 확인용 json => " + json);
+			//	System.out.println("~~~~ 확인용 json => " + json);
 			// ~~~~ 확인용 json => {"group_id":"R2GWPBT7UoW308sI","success_count":1,"error_count":0} 
 			
 			request.setAttribute("json", json);
-			
+			mav.addObject("key", key);
 			mav.setViewName("jsonview");
+			
 			return mav;
 			
-		
-			
 	}
-	
+		
 	@RequestMapping(value = "/signup.food")
 	public ModelAndView signup(HttpServletRequest request, ModelAndView mav) {
 		
@@ -355,5 +373,5 @@ public class FoodieController {
 		return jsonObj.toString();
 
 	}
-
+	
 }

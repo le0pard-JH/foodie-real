@@ -85,7 +85,14 @@ public class FoodieService implements InterFoodieService {
 		public int registerMember(Map<String, String> paraMap)  {
 			
 			int n = dao.registerMember(paraMap);
-			return 0;
+			return n;
+		}
+		
+		
+		@Override
+		public MemberVO getUserInfo(String email) {
+			MemberVO mvo = dao.getUserInfo(email);
+			return mvo;
 		}
 	
 	

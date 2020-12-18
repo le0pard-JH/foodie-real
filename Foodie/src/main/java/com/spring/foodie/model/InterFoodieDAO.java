@@ -15,6 +15,8 @@ public interface InterFoodieDAO {
 	LoginHistoryVO getloginHistoryGap(String email); // 로그인 히스토리 가져오기.
 
 	int registerMember(Map<String, String> paraMap); // 회원가입하기
+
+	MemberVO getUserInfo(String email); // 유저 정보 가져오기.
 	
 	
 }

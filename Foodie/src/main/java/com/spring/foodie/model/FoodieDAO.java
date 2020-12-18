@@ -87,5 +87,13 @@ public class FoodieDAO implements InterFoodieDAO {
 		return n;
 	}
 
+	@Override
+	public MemberVO getUserInfo(String email) {
+		
+		MemberVO mvo=sqlsession.selectOne("foodie.getUserInfo", email);
+		return mvo;
+		
+	}
+
 
 }
