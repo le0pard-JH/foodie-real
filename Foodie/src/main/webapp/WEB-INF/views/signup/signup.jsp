@@ -316,7 +316,7 @@
 		<tr>
 			<td style="width: 20%; font-weight: bold;">이메일&nbsp;<span class="star">*</span></td>
 			<td style="width: 80%; text-align: left;">
-			<input type="text" name="email" id="email" class="requiredInfo" placeholder="UserEmail@foodie.com" />    
+			<input type="text" name="email" id="email" class="requiredInfo" value='${paraMap.email}' placeholder="UserEmail@foodie.com" />    
 			    <span style="display: inline-block; width: 80px; height: 30px; border: solid 1px gray; border-radius: 5px; font-size: 8pt; text-align: center; margin-left: 10px; cursor: pointer;" onclick="isExistEmailCheck();">이메일중복확인</span> 
 			    <span id="emailCheckResult"></span>
 			    <span id="error" class="error">이메일 형식에 맞지 않습니다.</span>
@@ -326,7 +326,7 @@
 		<tr>
 			<td style="width: 20%; font-weight: bold;">성명&nbsp;<span class="star">*</span></td>
 			<td style="width: 80%; text-align: left;">
-			    <input type="text" name="name" id="name" class="requiredInfo" placeholder="홍길동"/> 
+			    <input type="text" name="name" id="name" class="requiredInfo" value='${paraMap.name}' placeholder="홍길동"/> 
 				<span id="error" class="error">성명은 필수입력 사항입니다.</span>
 			</td>
 		</tr>
@@ -353,7 +353,9 @@
 			    <span id="error" class="error">휴대폰 형식이 아닙니다.</span>
 			</td>
 		</tr>
-
+			
+		<input type="hidden" name="kakaoid" value='${paraMap.kakaoid}'/> 
+			
 		<tr>
 			<td colspan="2" style="text-align: center; vertical-align: middle;">
 				<iframe src="../../../resources/iframeAgree/agree.html" width="85%" height="150px" class="box" ></iframe>

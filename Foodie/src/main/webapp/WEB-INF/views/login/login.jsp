@@ -251,7 +251,7 @@ function loginWithKakao() {
 		      		        		frm.email.value=email;
 		      		        		frm.name.value=name;
 		      		        		
-		      		        		frm.action="/foodie/signup.food";
+		      		        		frm.action="/foodie/signupKaKao.food";
 		      		        		frm.method="POST";
 		      		        		
 		      		        		frm.submit();

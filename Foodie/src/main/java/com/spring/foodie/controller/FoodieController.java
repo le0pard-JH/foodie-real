@@ -251,14 +251,16 @@ public class FoodieController {
 	}
 	
 	@RequestMapping(value = "/signup.food")
-	public String signup(HttpServletRequest request, ModelAndView mav) {
+	public ModelAndView signup(HttpServletRequest request, ModelAndView mav) {
 		
 		
 		if(request.getMethod().equals("GET")) {
 			
-			return "/signup/signup";
+			mav.setViewName("signup/signup");
 			
+			return mav;
 		}
+		
 		
 		else {
 			
@@ -273,13 +275,17 @@ public class FoodieController {
 			
 			String kakaoid = request.getParameter("kakaoid");
 			
+			if(kakaoid.isEmpty() || kakaoid == null) {
+				kakaoid = "0";
+			}
+			
 			Map<String, String> paraMap = new HashMap<>();
 			
 			paraMap.put("email", email);
 			paraMap.put("name", name);
 			paraMap.put("pwd", pwd);
 			paraMap.put("mobile", mobile);
-			paraMap.put("kakaoid", "0");
+			paraMap.put("kakaoid", kakaoid);
 			int n = service.registerMember(paraMap);
 			
 			String message = "";
@@ -295,30 +301,38 @@ public class FoodieController {
 				message = "회원가입 실패";
 				loc = "javascript:history.back()" ; // 자바스크립트를 이용한 이전페이지로 이동하는것.
 				
-					
 				
-				mav.addObject("message", message);
-				mav.addObject("loc", loc);
 			}
 			
-			
-			
-			return "/login/login";
+			mav.addObject("message", message);
+			mav.addObject("loc", loc);
+			mav.setViewName("msg");
+			return mav;
 			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
+		
+		// 카카오로 가입하기
+		@RequestMapping(value = "/signupKaKao.food")
+		public ModelAndView signupKaKao(HttpServletRequest request, ModelAndView mav) {
+			
+			String kakaoid=request.getParameter("kakaoid");
+			String email=request.getParameter("email");
+			String name=request.getParameter("name");
+			
+			Map<String, String> paraMap = new HashMap<>();
+			paraMap.put("kakaoid", kakaoid);
+			paraMap.put("email", email);
+			paraMap.put("name", name);
+			
+			mav.addObject("paraMap", paraMap);
+			mav.setViewName("signup/signup");
+			
+			return mav;
+			
+			
+		}
+	
 
 	@ResponseBody
 	@RequestMapping(value = "/emailDuplicateCheck.food", method= {RequestMethod.POST}, produces="text/plain;charset=UTF-8")
