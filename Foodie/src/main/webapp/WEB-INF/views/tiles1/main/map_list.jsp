@@ -3,223 +3,227 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style type="text/css">
-div.container {
-	font-size: 16px;
-}
+    div.container {
+        font-size: 16px;
+    }
+
 </style>
 
 <script>
-	$(document).ready(function() {
+    $(document).ready(function() {
 
-		// 대분류
-		var basicInfo = null;
-		var blogReview = null;
-		var kakaoStory = null;
-		var comment = null;
-		var findway = null;
-		var menuInfo = null;
-		var photo = null;
-		var s2graph = null;
+        // 대분류
+        var basicInfo = null;
+        var blogReview = null;
+        var kakaoStory = null;
+        var comment = null;
+        var findway = null;
+        var menuInfo = null;
+        var photo = null;
+        var s2graph = null;
 
-		// 카테고리 - 전체
+        // 카테고리 - 전체
 
-		// 가게 정보
-		var store_id = null;
-		var store_name = null;
-		var mobile = null;
+        // 가게 정보
+        var store_id = null;
+        var store_name = null;
+        var mobile = null;
+        var Arr_Feedback = null;
 
-		// 가게 주소
-		var postcode_new = null;
-		var addr_new = null;
-		var local_dist_tag = null;
-		var local_old = null;
-		var local_new = null;
-		var addr_old = null;
+        // 가게 주소
+        var postcode_new = null;
+        var addr_new = null;
+        var local_dist_tag = null;
+        var local_old = null;
+        var local_new = null;
+        var addr_old = null;
 
-		// 홈페이지 or SNS
-		var social = null;
+        // 홈페이지 or SNS
+        var social = null;
 
-		// 영업시간
-		var Store_Update_Date = null;
-		var openHour = null;
-		var Arr_RealHour = null;
+        // 영업시간
+        var Store_Update_Date = null;
+        var openHour = null;
+        var Arr_RealHour = null;
 
-		// TV 방영 목록
-		var Arr_TvList = null;
-		var Arr_Store_tag = null;
+        // TV 방영 목록
+        var Arr_TvList = null;
+        var Arr_Store_tag = null;
 
-		// 그래프 데이터
-		var Arr_Graph_Day = null;
-		var Arr_Graph_Gender = null;
-		var Arr_Graph_Age = null;
+        // 그래프 데이터
+        var Arr_Graph_Day = null;
+        var Arr_Graph_Gender = null;
+        var Arr_Graph_Age = null;
 
-		// 리뷰
-		var Arr_Blog_Review = null;
-		var Arr_Kakao_Story = null;
+        // 리뷰
+        var Arr_Blog_Review = null;
+        var Arr_Kakao_Story = null;
 
-		// 길찾기
-		var Arr_Find_Subway = null;
-		var Arr_Find_Bus = null;
+        // 길찾기
+        var Arr_Find_Subway = null;
+        var Arr_Find_Bus = null;
 
-		// 
-		var Arr_Menu_List = null;
-		var Arr_Menu_List_Pic = null;
-		var Arr_Store_Photo = null;
+        // 사진
+        var Arr_Menu_List = null;
+        var Arr_Menu_List_Pic = null;
+        var Arr_Store_Photo = null;
 
-		var kakao_store_id = "25406298";
+        var kakao_store_id = "25406298";
 
-		$.ajax({
-			type : "POST",
-			url : "/foodie/get/json.food",
-			dataType : "json",
-			data : kakao_store_id,
-			success : function(foodie) { //json 데이터를 반환 받음
-				// console.log(foodie);
-				// console.log(foodie.basicInfo);
-				proc(foodie);
+        $.ajax({
+            type: "POST",
+            url: "/foodie/get/json.food",
+            dataType: "json",
+            data: kakao_store_id,
+            success: function(foodie) { //json 데이터를 반환 받음
+                // console.log(foodie);
+                // console.log(foodie.basicInfo);
+                proc(foodie);
 
-			},
-			error : function() {
-				console.log("Failed");
-			}
-		})
-	});
+            },
+            error: function() {
+                console.log("Failed");
+            }
+        })
+    });
 
-	function proc(foodie) {
+    function proc(foodie) {
 
-		// 대분류
-		basicInfo = foodie.basicInfo;
-		blogReview = foodie.blogReview;
-		kakaoStory = foodie.kakaoStory;
-		comment = foodie.comment;
-		findway = foodie.findway;
-		menuInfo = foodie.menuInfo;
-		photo = foodie.photo;
-		s2graph = foodie.s2graph;
+        // 대분류
+        basicInfo = foodie.basicInfo;
+        blogReview = foodie.blogReview;
+        kakaoStory = foodie.kakaoStory;
+        comment = foodie.comment;
+        findway = foodie.findway;
+        menuInfo = foodie.menuInfo;
+        photo = foodie.photo;
+        s2graph = foodie.s2graph;
 
-		// 카테고리 - 전체
+        // 카테고리 - 전체
 
-		// 가게 정보
-		store_id = basicInfo.cid;
-		store_name = basicInfo.placenamefull;
-		mobile = basicInfo.phonenum;
+        // 가게 정보
+        store_id = basicInfo.cid;
+        store_name = basicInfo.placenamefull;
+        mobile = basicInfo.phonenum;
+        Arr_Feedback = basicInfo.feedback;
 
-		// 가게 주소
-		postcode_new = basicInfo.address.newaddr.bsizonno;
-		addr_new = basicInfo.address.newaddr.newaddrfull;
-		local_dist_tag = basicInfo.address.region.name3;
-		local_old = basicInfo.address.region.fullname;
-		local_new = basicInfo.address.region.newaddrfullname;
-		addr_old = basicInfo.address.addrbunho;
+        // 가게 주소
+        postcode_new = basicInfo.address.newaddr.bsizonno;
+        addr_new = basicInfo.address.newaddr.newaddrfull;
+        local_dist_tag = basicInfo.address.region.name3;
+        local_old = basicInfo.address.region.fullname;
+        local_new = basicInfo.address.region.newaddrfullname;
+        addr_old = basicInfo.address.addrbunho;
 
-		// 홈페이지 or SNS
-		social = basicInfo.homepage;
+        // 홈페이지 or SNS
+        social = basicInfo.homepage;
 
-		// 영업시간
-		Store_Update_Date = basicInfo.openHour.realtime.datetime;
-		openHour = basicInfo.openHour.realtime.currentPeriod.periodName;
-		Arr_RealHour = basicInfo.openHour.realtime.currentPeriod.timeList;
+        // 영업시간
+        Store_Update_Date = basicInfo.openHour.realtime.datetime;
+        openHour = basicInfo.openHour.realtime.currentPeriod.periodName;
+        Arr_RealHour = basicInfo.openHour.realtime.currentPeriod.timeList;
 
-		// TV 방영 목록
-		Arr_TvList = basicInfo.tvInfoList;
-		Arr_Store_tag = basicInfo.metaKeywordList;
+        // TV 방영 목록
+        Arr_TvList = basicInfo.tvInfoList;
+        Arr_Store_tag = basicInfo.metaKeywordList;
 
-		// 그래프 데이터
-		Arr_Graph_Day = s2graph.day;
-		Arr_Graph_Gender = s2graph.gender;
-		Arr_Graph_Age = s2graph.age;
+        // 그래프 데이터
+        Arr_Graph_Day = s2graph.day;
+        Arr_Graph_Gender = s2graph.gender;
+        Arr_Graph_Age = s2graph.age;
 
-		// 리뷰
-		Arr_Blog_Review = blogReview;
-		Arr_Kakao_Story = kakaoStory;
+        // 리뷰
+        Arr_Blog_Review = blogReview;
+        Arr_Kakao_Story = kakaoStory;
 
-		// 길찾기
-		Arr_Find_Subway = findway.subway;
-		Arr_Find_Bus = findway.busstop;
+        // 길찾기
+        Arr_Find_Subway = findway.subway;
+        Arr_Find_Bus = findway.busstop;
 
-		// 
-		Arr_Menu_List = menuInfo.menuList;
-		Arr_Menu_List_Pic = menuInfo.menuboardphotourlList;
-		Arr_Store_Photo = photo.photoList;
+        // 
+        Arr_Menu_List = menuInfo.menuList;
+        Arr_Menu_List_Pic = menuInfo.menuboardphotourlList;
+        Arr_Store_Photo = photo.photoList;
 
-		print();
-	}
+        console.log(Arr_Store_Photo);
 
-	function print() {
+        print();
+    }
 
-		$('div.store_title').append(
-				store_id + '<br>' + store_name + '<br>' + '상세정보 <br>'
-						+ addr_new + ' (우) ' + postcode_new + '<br>' + '지번 '
-						+ local_dist_tag + ' ' + addr_old);
+    function print() {
 
-		$.each(Arr_RealHour, function(index, realHour) {
+        $('div.store_title').append(
+            store_id + '<br>' + store_name + '<br>' + '상세정보 <br>' +
+            addr_new + ' (우) ' + postcode_new + '<br>' + '지번 ' +
+            local_dist_tag + ' ' + addr_old);
 
-			$('div.store_time').append(
-					realHour.timeName + ' : ' + realHour.dayOfWeek + ' '
-							+ realHour.timeSE + '<br>');
+        $.each(Arr_RealHour, function(index, realHour) {
 
-		});
+            $('div.store_time').append(
+                realHour.timeName + ' : ' + realHour.dayOfWeek + ' ' +
+                realHour.timeSE + '<br>');
 
-		$('div.store_info').append(social + '<br>' + mobile + ' 대표번호<br>');
+        });
 
-		$.each(Arr_Store_tag, function(index, store_tag) {
+        $('div.store_info').append(social + '<br>' + mobile + ' 대표번호<br>');
 
-			$('div.store_info').append(store_tag);
+        $.each(Arr_Store_tag, function(index, store_tag) {
 
-		});
+            $('div.store_info').append(store_tag);
 
-		$.each(Arr_TvList, function(index, tv) {
+        });
 
-			$('div.store_info').append(
-					tv.chtitle + ' ' + tv.prtitle + ' ' + tv.episodeseq + ' 화 '
-							+ tv.telecastdt + '<br>');
+        $.each(Arr_TvList, function(index, tv) {
 
-		});
+            $('div.store_info').append(
+                tv.chtitle + ' ' + tv.prtitle + ' ' + tv.episodeseq + ' 화 ' +
+                tv.telecastdt + '<br>');
 
-		$.each(Arr_Menu_List, function(index, menu) {
+        });
 
-			$('div.menu_list').append(
-					menu.menu + ' - ' + menu.price + ' ' + '<br>');
+        $.each(Arr_Menu_List, function(index, menu) {
 
-		});
-		
-		$.each(Arr_Menu_List_Pic, function(index, menu_pic) {
+            $('div.menu_list').append(
+                menu.menu + ' - ' + menu.price + ' ' + '<br>');
 
-			$('div.menu_list').append('<br>');
-			$('div.menu_list').append('<img src=' + menu_pic + ' alt=메뉴 />');
+        });
 
-		});
-		
-		$('div.menu_list').append('<br>');
-		
-		$.each(Arr_Store_Photo, function(index, photo) {
-			
-			console.log(photo.photoList.list.orgurl);
+        $.each(Arr_Menu_List_Pic, function(index, menu_pic) {
+
+            $('div.menu_list').append('<br>');
+            $('div.menu_list').append('<img src=' + menu_pic + ' alt=메뉴 />');
+
+        });
+
+        $('div.menu_list').append('<br>');
+
+        $.each(Arr_Store_Photo, function(index, photo) {
 
             $('div.menu_list').append('<br>');
             $('div.menu_list').append('<img src=' + photo.list.orgurl + ' alt=메뉴 />');
 
         });
-	    
-		
-	}
+
+
+    }
+
 </script>
 
 <body>
 
-		<div class="container">
+    <div class="container">
 
-				<div class="store_title"></div>
-				<br>
-				<div class="store_time"></div>
-				<br>
-				<div class="store_info"></div>
-				<br>
-				<div class="menu_list"></div>
-				<br>
+        <div class="store_title"></div>
+        <br>
+        <div class="store_time"></div>
+        <br>
+        <div class="store_info"></div>
+        <br>
+        <div class="menu_list"></div>
+        <br>
 
 
-		</div>
+    </div>
 
 </body>
 

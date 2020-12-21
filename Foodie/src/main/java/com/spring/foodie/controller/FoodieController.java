@@ -129,7 +129,7 @@ public class FoodieController {
   public String getJson() {
 
     String kakao = "https://place.map.kakao.com/main/v/";
-    String id = "290249009";
+    String id = "7981207";
     String myURL = kakao + id;
 
     Object json = JsonReader.callURL(myURL);
@@ -137,6 +137,8 @@ public class FoodieController {
     
     return json.toString();
   }
+  
+  // menuList, s2gra
 
 
 
