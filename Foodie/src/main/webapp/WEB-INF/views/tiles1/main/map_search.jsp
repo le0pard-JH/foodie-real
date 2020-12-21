@@ -356,8 +356,8 @@
 
             el.innerHTML = itemStr;
             el.className = 'item';
-            
-         // console start
+
+            // console start
             console.log("");
             console.log("start");
             console.log(places.address_name);
@@ -455,9 +455,9 @@
         }
 
     </script>
-    
+
     <form name="searchFrm">
-    form test
+        form test
     </form>
 </body>
 
