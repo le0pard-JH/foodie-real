@@ -145,7 +145,7 @@
         Arr_Menu_List_Pic = menuInfo.menuboardphotourlList;
         Arr_Store_Photo = photo.photoList;
 
-        console.log(Arr_Store_Photo);
+        // console.log(Arr_Store_Photo);
 
         print();
     }
@@ -197,14 +197,24 @@
 
         $('div.menu_list').append('<br>');
 
+        //console.log();
+        //console.log(Arr_Store_Photo.list);
+
         $.each(Arr_Store_Photo, function(index, photo) {
+            var photo_count = photo.photoCount;
+            var photo_name = photo.categoryName;
+            var photo_list = photo.list;
 
-            $('div.menu_list').append('<br>');
-            $('div.menu_list').append('<img src=' + photo.list.orgurl + ' alt=메뉴 />');
+            $.each(photo_list, function(index, photo1) {
+                var img_url = photo1.orgurl;
 
+                console.log(photo_name);
+                console.log(img_url);
+
+                $('div.menu_list').append('<br>');
+                $('div.menu_list').append('<img src=' + img_url + ' alt=메뉴 />');
+            });
         });
-
-
     }
 
 </script>
