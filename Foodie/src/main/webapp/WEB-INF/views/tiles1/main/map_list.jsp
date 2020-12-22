@@ -205,8 +205,8 @@
             var photo_name = photo.categoryName;
             var photo_list = photo.list;
 
-            $.each(photo_list, function(index, photo1) {
-                var img_url = photo1.orgurl;
+            $.each(photo_list, function(index, img) {
+                var img_url = img.orgurl;
 
                 console.log(photo_name);
                 console.log(img_url);
