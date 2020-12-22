@@ -68,7 +68,29 @@
         var Arr_Menu_List_Pic = null;
         var Arr_Store_Photo = null;
 
-        var kakao_store_id = "25406298";
+        // var store_id = "27075901";
+
+        $("input.kakao_store_id").val(store_id);
+
+        $("input.kakao_store_id").keyup(function(event) {
+            if (event.keyCode == 13) {
+                goSearch();
+            }
+        });
+
+        $("input.kakao_store_id").click(function(event) {
+            goSearch();
+        });
+    });
+
+    function goSearch() {
+
+        //$("input.kakao_store_id").val(store_id);
+        var text = $("input.kakao_store_id").val();
+        console.log(text);
+
+        var kakao_store_id = $("form[name=kakao_store_id]").serialize();
+        // var kakao_store_id = '26217952';
 
         $.ajax({
             type: "POST",
@@ -84,8 +106,9 @@
             error: function() {
                 console.log("Failed");
             }
-        })
-    });
+        });
+
+    }
 
     function proc(foodie) {
 
@@ -140,7 +163,7 @@
         Arr_Find_Subway = findway.subway;
         Arr_Find_Bus = findway.busstop;
 
-        // 
+        // 사진 배열 객체
         Arr_Menu_List = menuInfo.menuList;
         Arr_Menu_List_Pic = menuInfo.menuboardphotourlList;
         Arr_Store_Photo = photo.photoList;
@@ -220,6 +243,10 @@
 </script>
 
 <body>
+
+    <form name="kakao_store_id">
+        <input type="text" name="kakao_store_id" id="kakao_store_id" class="kakao_store_id" value="" />
+    </form>
 
     <div class="container">
 

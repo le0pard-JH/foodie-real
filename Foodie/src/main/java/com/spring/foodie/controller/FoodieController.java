@@ -113,6 +113,13 @@ public class FoodieController {
     return mav;
   }
 
+  // 지도 - 테스트
+  @RequestMapping(value = "/map/test.food")
+  public ModelAndView map_test(HttpServletRequest request, ModelAndView mav) {
+    mav.setViewName("main/map_test.tiles1");
+    return mav;
+  }
+
 
   // JSON Print
   @CrossOrigin
@@ -126,18 +133,21 @@ public class FoodieController {
   @CrossOrigin
   @ResponseBody
   @RequestMapping(value = "/get/json.food", produces = "text/plain;charset=UTF-8")
-  public String getJson() {
+  public String getJson(HttpServletRequest request) {
+
+    String kakao_store_id = request.getParameter("kakao_store_id");
+    System.out.println("kakao_store_id : " + kakao_store_id);
 
     String kakao = "https://place.map.kakao.com/main/v/";
-    String id = "7981207";
+    String id = kakao_store_id;
     String myURL = kakao + id;
 
     Object json = JsonReader.callURL(myURL);
     System.out.println("controller json : " + json);
-    
+
     return json.toString();
   }
-  
+
   // menuList, s2gra
 
 
