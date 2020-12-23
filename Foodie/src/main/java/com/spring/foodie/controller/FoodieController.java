@@ -1,11 +1,13 @@
 package com.spring.foodie.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.poi.hpsf.Array;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +59,8 @@ public class FoodieController {
 		String Place = hotPlace.substring(0, hotPlace.indexOf(target));
 		// 신논현역 맛집 베스트 ==> 신논현역
 		
+		Place = Place + "맛집";
+		
 		// 입력받은 위치값과 스크롤 컨트롤러를 전송하여 20개의 가게집을 받아옴
 		// List<SearchVO> storeList = service.getStoreList(Place,scrollCtrl);
 		
@@ -80,18 +84,15 @@ public class FoodieController {
 		
 		String[] codeArr = codes.split(",");
 		
-		JSONArray jarr = new JSONArray();
+		List<String> storeArr = new ArrayList<String>();
 		
 		for (int i = 0; i < codeArr.length; i++) {
 			String storeInfo = getJsonBoardImage(codeArr[i]);
-			JSONObject jobj = new JSONObject();
-			jobj.put("storeInfo", storeInfo);
 			
-			jarr.put(jobj);
+			storeArr.add(storeInfo);
 		}		
-		String json = jarr.toString();
 		
-		System.out.println(json);
+		String json = storeArr.toString();
 		
 		return json;
 	}
@@ -124,8 +125,6 @@ public class FoodieController {
 		}
 		
 		String json = jsonArr.toString();
-		
-		System.out.println(json);
 		
 		return json;
 	}
@@ -224,7 +223,6 @@ public class FoodieController {
 		String myURL = kakao + id;
 		
 		Object json = JsonReader.callURL(myURL);
-		System.out.println("controller json : " + json);
 		
 		return json.toString();
 	}
@@ -236,8 +234,7 @@ public class FoodieController {
 		String myURL = kakao + id;
 		
 		Object json = JsonReader.callURL(myURL);
-		System.out.println("controller json : " + json);
-		
+
 		return json.toString();
 	}
 	

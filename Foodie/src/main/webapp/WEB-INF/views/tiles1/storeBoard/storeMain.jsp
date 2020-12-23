@@ -31,58 +31,59 @@
 	$(document).ready(function() {
 		// 키워드로 장소를 검색합니다
 		searchPlaces();
-		
-		// 대분류
-		var basicInfo = null;
-		var blogReview = null;
-		var kakaoStory = null;
-		var comment = null;
-		var findway = null;
-		var menuInfo = null;
-		var photo = null;
-		var s2graph = null;
-
-		var Arr_Store_Photo = null;
-		
 	});
 
 	function proc(foodie) {
-		
-		var json = foodie.split(",");
-		
-		$.each(Arr_Store_Photo, function(index, photo) {
-
-            $('div.storeImg').append('<br>');
-            $('div.storeImg').append('<img src=' + photo.list.orgurl + ' alt=메뉴 />');
-
-        });
-		
 		// 대분류
-		var basicInfo = null;
-		var blogReview = null;
-		var kakaoStory = null;
-		var comment = null;
-		var findway = null;
-		var menuInfo = null;
-		var photo = null;
-		var s2graph = null;
-		
-		// 사진
-		Arr_Store_Photo = photo.photoList;
+ 		var basicInfo = null;
+ 		var blogReview = null;
+ 		var kakaoStory = null;
+ 		var comment = null;
+ 		var findway = null;
+ 		var menuInfo = null;
+ 		var photo = null;
+ 		var s2graph = null;
 
-		printImg(Arr_Store_Photo);
+		var imgList = [];
+ 		var Arr_Store_Photo = null;
+		
+		var orgurl = null;
+ 		
+		var imgArr = [];
+		
+    	 $.each(foodie, function(index, item) {
+    		
+    		photo = item.photo;
+				
+    		Arr_Store_Photo = photo.photoList
+    			
+			$.each(Arr_Store_Photo, function(index, item1) {
+				
+				if(item1.categoryName == "all") {
+					$.each(item1.list, function(index, item2){
+						if(item2.photoid == "M") {
+							imgArr.push(item2.orgurl);
+						}
+					});
+				}
+			});  
+		});
+    	 
+    	 for(var i=0; i<imgArr.length; i++) {
+    		 $("div.storeImg").eq(i).append("<img src="+imgArr[i]+" />");
+    	 }
 	}
 
 	// 스크롤 이벤트 (최하단 이동시 더보기 기능)
 	$(window).scroll(function() {
-				var scrolltop = $(document).scrollTop();
-				var height = $(document).height();
-				var height_win = $(window).height();
-				if (Math.round($(window).scrollTop()) == $(document).height()
-						- $(window).height()) {
-					// moreList();
-				}
-			});
+		var scrolltop = $(document).scrollTop();
+		var height = $(document).height();
+		var height_win = $(window).height();
+		if (Math.round($(window).scrollTop()) == $(document).height()
+				- $(window).height()) {
+			// moreList();
+		}
+	});
 
 	// 리스트의 가게를 클릭했을경우 해당 가게 상세페이지로 이동하는 함수
 	function storeClick() {
@@ -96,11 +97,10 @@
 			frm.action = "<%=ctxPath%>/storeBoard/storeDetail.food?code="+code;
 			frm.submit();
 		});
-		
 	 }
 	   
 	// 스크롤 최하단으로 이동시 가게정보를 추가로 가져오는 메서드
-	 function moreList() {
+	 <%-- function moreList() {
 		var scrollCtrl = $("#scrollCtrl").val();
 		var hotPlace = "${hotPlace}";
 		var hotPlaceInfo = "${hotPlaceInfo}";
@@ -142,7 +142,7 @@
 					alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
 			 	}
 			});
-		}
+		} --%>
 	
 	// 키워드 검색을 요청하는 함수입니다
      function searchPlaces() {
@@ -240,19 +240,6 @@
  		 	}
  		});
 	}
-     
-     function printImg(Arr_Store_Photo) {
-    	 var html = "";
-    	 
-    	 var store_Photo = Arr_Store_Photo.split(",");
-    	 
-    	 for(var i=0; i<store_Photo.length; i++) {
-	    	 html += $('div.storeImg').eq(i).append('<img src=' + store_Photo[i] + '/>');
-    	 }
-    	 
-    	 
-     }
-		
 </script>
 
 <form name="storeListForm">

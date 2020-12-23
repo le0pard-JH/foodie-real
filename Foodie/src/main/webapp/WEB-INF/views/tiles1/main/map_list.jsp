@@ -77,7 +77,7 @@ div.container {
 				console.log(foodie);
 				// console.log(foodie.basicInfo);
 				proc(foodie);
-
+				
 			},
 			error : function() {
 				console.log("Failed");
