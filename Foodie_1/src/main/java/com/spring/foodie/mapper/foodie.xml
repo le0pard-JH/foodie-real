@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ==== #29. mapper 기본설정 ==== -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ==== #29. 루트 엘리먼트 & 네임스페이스 설정(프로젝트 전체내에서 유일해야 한다.) ==== -->
+<mapper namespace="foodie">
+
+	<insert id="">
+	</insert>
+	
+	<select id="emailDuplicateCheck" parameterType="String" resultType="com.spring.foodie.model.MemberVO">
+		select * from tbl_member where email = #{email}
+	</select>
+	
+	<!-- === 로그인 처리하기 === -->
+	<select id="getLoginMember" resultType="com.spring.foodie.model.MemberVO" parameterType="HashMap">     
+		select no, type, kakaoid, name, email, pwd, registerday, status, idle      
+		from tbl_member
+		where email = #{email} and pwd = #{pwd} 
+	</select>
+
+	<!-- === 카카오로그인 처리하기 === -->
+	<select id="getkakaoLoginMember" resultType="com.spring.foodie.model.MemberVO" parameterType="String">     
+		select no, type, kakaoid, name, email, pwd, registerday, status, idle      
+		from tbl_member
+		where  kakaoid = #{kakaoid}  
+	</select>
+	
+	
+	
+	<insert id="setLoginHistory" parameterType="HashMap">
+	
+			insert into tbl_loginhistory(fk_email, logindate, clientip)
+	    	values(#{email}, default, #{clientip})  
+	</insert>
+	
+	<!-- == 로그인 갭 가져오기 == -->
+	<select id="getloginHistoryGap" resultType="com.spring.foodie.model.LoginHistoryVO" parameterType="String">     
+	select trunc( months_between(sysdate, max(logindate)) ) AS lastlogingap
+    from tbl_loginhistory 
+    where fk_email = #{email} 
+	</select>
+	
+	
+	<insert id="registerMember" parameterType="HashMap">
+		insert into tbl_member(no, type, kakaoid, name, email, pwd, mobile, registerday, status, idle)
+	    values(seq_memberno.nextval, default, #{kakaoid}, #{name}, #{email}, #{pwd}, #{mobile}, default, default, default)	
+	</insert>                                        
+</mapper>
+
+
+
