@@ -22,7 +22,19 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="<%=request.getContextPath() %>/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script> 
-   
+    <!-- Js Plugins -->
+    <script src="<%=request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/jquery-ui.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/jquery.nicescroll.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/jquery.barfiller.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/jquery.magnific-popup.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/main.js"></script>
+    
+    
    <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
@@ -45,17 +57,11 @@
 </head>
 <body>
 	<div id="mycontainer">
-		<div id="myheader">
-			<tiles:insertAttribute name="header" />
-		</div>
 		
 		<div id="mycontent">
 			<tiles:insertAttribute name="content" />
 		</div>
 		
-		<div id="myfooter">
-			<tiles:insertAttribute name="footer" />
-		</div>
 	</div>
 </body>
 </html>    

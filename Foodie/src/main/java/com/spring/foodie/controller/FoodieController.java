@@ -87,6 +87,7 @@ public class FoodieController {
 
 	}
 
+
 	// 지도 - 해당 위치 보여주기
 	@RequestMapping(value = "/map/locate.food")
 	public ModelAndView map_locate(HttpServletRequest request, ModelAndView mav) {

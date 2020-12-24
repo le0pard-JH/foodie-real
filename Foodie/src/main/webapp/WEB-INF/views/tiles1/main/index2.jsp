@@ -7,15 +7,17 @@
    String ctxPath = request.getContextPath();
   //       /board 
 %>
+
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Directing Template">
     <meta name="keywords" content="Directing, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Get it Foodie!</title>
-
+    <title>3조 | 파이널</title>
+    
 </head>
+
 <style type="text/css">
 
 body{
@@ -78,12 +80,27 @@ div.set-bg{
    });
    
 </script>
+
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
 
+    <!-- Categories Section Begin -->
+    <!-- <section class="categories spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>Most Popular Categories</h2>
+                        <p>Travelocity empowers travelers who are giving back on their trips in ways big and small</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Categories Section End -->
 
     <!-- Most Search Section Begin -->
     <section class="most-search spad">

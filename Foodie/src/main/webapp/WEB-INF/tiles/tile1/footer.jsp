@@ -32,7 +32,7 @@
                             </li>
                             <li>
                                 <span>Email:</span>
-                                <p>Foodie@gmail .com</p>
+                                <p>Foodie@gmail.com</p>
                             </li>
                             <li>
                                 <span>Fax:</span>
