@@ -80,7 +80,7 @@ public class FoodieController {
 		searchList = service.searchList(paraMap);
 
 		mav.addObject("searchList", searchList);
-		mav.setViewName("main/list.tiles1");
+		mav.setViewName("main/list.tiles3");
 		// mav.setViewName("main/map_list.tiles1");
 
 		return mav;
