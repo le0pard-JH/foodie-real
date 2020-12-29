@@ -12,6 +12,8 @@
 <script>
     $(document).ready(function() {
 
+        console.log('ready');
+
         // 대분류
         var basicInfo = null;
         var blogReview = null;
@@ -142,38 +144,144 @@
         social = basicInfo.homepage;
 
         // 영업시간
-        Store_Update_Date = basicInfo.openHour.realtime.datetime;
-        openHour = basicInfo.openHour.realtime.currentPeriod.periodName;
-        Arr_RealHour = basicInfo.openHour.realtime.currentPeriod.timeList;
+        console.log(basicInfo);
 
-        // TV 방영 목록
-        Arr_TvList = basicInfo.tvInfoList;
-        Arr_Store_tag = basicInfo.metaKeywordList;
+        console.log('3-21');
 
-        // 그래프 데이터
-        Arr_Graph_Day = s2graph.day;
-        Arr_Graph_Gender = s2graph.gender;
-        Arr_Graph_Age = s2graph.age;
+        var flag = false;
 
-        // 리뷰
-        Arr_Blog_Review = blogReview;
-        Arr_Kakao_Story = kakaoStory;
+        try {
+            if (typeof(basicInfo.openHour.realtime.datetime) !== undefined) {
+                flag = true;
+                Store_Update_Date = basicInfo.openHour.realtime.datetime;
+                if (typeof(basicInfo.openHour.realtime.currentPeriod.periodName) !== undefined) {
+                    flag = true;
+                    openHour = basicInfo.openHour.realtime.currentPeriod.periodName;
+                    if (typeof(basicInfo.openHour.realtime.currentPeriod.timeList) !== undefined) {
+                        flag = true;
+                        Arr_RealHour = basicInfo.openHour.realtime.currentPeriod.timeList;
+                    }
+                }
+            }
+        } catch (basicInfoTimeError) {
+            flag = false;
+            console.log(basicInfoTimeError);
+        }
 
-        // 길찾기
-        Arr_Find_Subway = findway.subway;
-        Arr_Find_Bus = findway.busstop;
+        console.log("basicInfo time flag : " + flag);
 
-        // 사진 배열 객체
-        Arr_Menu_List = menuInfo.menuList;
-        Arr_Menu_List_Pic = menuInfo.menuboardphotourlList;
-        Arr_Store_Photo = photo.photoList;
+        try {
+            if (typeof(basicInfo.tvInfoList) !== undefined) {
+                flag = true;
+                Arr_TvList = basicInfo.tvInfoList;
+                if (typeof(basicInfo.metaKeywordList) !== undefined) {
+                    flag = true;
+                    Arr_Store_tag = basicInfo.metaKeywordList;
+                }
+            }
+        } catch (basicInfoTvTagError) {
+            flag = false;
+            console.log(basicInfoTimeError);
+        }
 
-        // console.log(Arr_Store_Photo);
+        console.log("basicInfo tv flag : " + flag);
 
+        try {
+            if (typeof(s2graph.day) !== undefined) {
+                flag = true;
+                Arr_Graph_Day = s2graph.day;
+                if (typeof(s2graph.gender) !== undefined) {
+                    flag = true;
+                    Arr_Graph_Gender = s2graph.gender;
+                    if (typeof(s2graph.age) !== undefined) {
+                        flag = true;
+                        Arr_Graph_Age = s2graph.age;
+                    }
+                }
+            }
+        } catch (s2graphError) {
+            flag = false;
+            console.log(s2graphError);
+        }
+
+        console.log("s2graph flag : " + flag);
+
+        try {
+            if (typeof(blogReview) !== undefined) {
+                flag = true;
+                Arr_Blog_Review = blogReview;
+            }
+        } catch (blogReviewError) {
+            flag = false;
+            console.log(blogReviewError);
+        }
+
+        console.log("blogReview flag : " + flag);
+
+        try {
+            if (typeof(kakaoStory) !== undefined) {
+                flag = true;
+                Arr_Kakao_Story = kakaoStory;
+            }
+        } catch (kakaoStoryError) {
+            flag = false;
+            console.log(kakaoStoryError);
+        }
+
+        console.log("kakaoStory flag : " + flag);
+
+        try {
+            if (typeof(findway.subway) !== undefined) {
+                flag = true;
+                Arr_Find_Subway = findway.subway;
+                if (typeof(findway.busstop) !== undefined) {
+                    flag = true;
+                    Arr_Find_Bus = findway.busstop;
+                }
+            }
+        } catch (findwayError) {
+            flag = false;
+            console.log(findwayError);
+        }
+
+        console.log("findway flag : " + flag);
+
+        try {
+            if (typeof(menuInfo.menuList) !== undefined) {
+                flag = true;
+                Arr_Menu_List = menuInfo.menuList;
+                if (typeof(menuInfo.menuboardphotourlList) !== undefined) {
+                    flag = true;
+                    Arr_Menu_List_Pic = menuInfo.menuboardphotourlList;
+                }
+            }
+        } catch (menuInfoError) {
+            flag = false;
+            console.log(menuInfoError);
+        }
+
+        console.log("menuInfo flag : " + flag);
+
+        try {
+            if (typeof(photo.photoList) !== undefined) {
+                flag = true;
+                Arr_Store_Photo = photo.photoList;
+            }
+        } catch (photoError) {
+            flag = false;
+            console.log(photoError);
+        }
+
+        console.log("photo flag : " + flag);
         print();
     }
 
     function print() {
+
+        $('div.store_title').empty();
+        $('div.store_time').empty();
+        $('div.store_info').empty();
+        $('div.menu_list').empty();
 
         $('div.store_title').append(
             store_id + '<br>' + store_name + '<br>' + '상세정보 <br>' +
@@ -181,41 +289,39 @@
             local_dist_tag + ' ' + addr_old);
 
         $.each(Arr_RealHour, function(index, realHour) {
-
             $('div.store_time').append(
                 realHour.timeName + ' : ' + realHour.dayOfWeek + ' ' +
                 realHour.timeSE + '<br>');
-
         });
 
-        $('div.store_info').append(social + '<br>' + mobile + ' 대표번호<br>');
+        try {
+            if (typeof(social) === 'String') {
+                $('div.store_info').append(social + '<br>' + mobile + ' 대표번호<br>');
+            } else {
+                $('div.store_info').append(mobile + ' 대표번호<br>');
+            }
+        } catch (socialError) {
+            console.log("socialError : " + socialError);
+        }
 
         $.each(Arr_Store_tag, function(index, store_tag) {
-
             $('div.store_info').append(store_tag);
-
         });
 
         $.each(Arr_TvList, function(index, tv) {
-
             $('div.store_info').append(
                 tv.chtitle + ' ' + tv.prtitle + ' ' + tv.episodeseq + ' 화 ' +
                 tv.telecastdt + '<br>');
-
         });
 
         $.each(Arr_Menu_List, function(index, menu) {
-
             $('div.menu_list').append(
                 menu.menu + ' - ' + menu.price + ' ' + '<br>');
-
         });
 
         $.each(Arr_Menu_List_Pic, function(index, menu_pic) {
-
             $('div.menu_list').append('<br>');
             $('div.menu_list').append('<img src=' + menu_pic + ' alt=메뉴 />');
-
         });
 
         $('div.menu_list').append('<br>');
@@ -231,13 +337,14 @@
             $.each(photo_list, function(index, img) {
                 var img_url = img.orgurl;
 
-                console.log(photo_name);
-                console.log(img_url);
+                //console.log(photo_name);
+                //console.log(img_url);
 
                 $('div.menu_list').append('<br>');
                 $('div.menu_list').append('<img src=' + img_url + ' alt=메뉴 />');
             });
         });
+
     }
 
 </script>
