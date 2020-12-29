@@ -27,6 +27,18 @@
     <link rel="stylesheet" href="<%=ctxPath %>/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%=ctxPath %>/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%=ctxPath %>/resources/css/style.css" type="text/css">
+    
+    <!-- Js Plugins -->
+    <script src="<%=ctxPath %>/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="<%=ctxPath %>/resources/js/bootstrap.min.js"></script>
+    <script src="<%=ctxPath %>/resources/js/jquery.nice-select.min.js"></script>
+    <script src="<%=ctxPath %>/resources/js/jquery-ui.min.js"></script>
+    <script src="<%=ctxPath %>/resources/js/jquery.nicescroll.min.js"></script>
+    <script src="<%=ctxPath %>/resources/js/jquery.barfiller.js"></script>
+    <script src="<%=ctxPath %>/resources/js/jquery.magnific-popup.min.js"></script>
+    <script src="<%=ctxPath %>/resources/js/jquery.slicknav.js"></script>
+    <script src="<%=ctxPath %>/resources/js/owl.carousel.min.js"></script>
+    <script src="<%=ctxPath %>/resources/js/main.js"></script>
 
 <!-- place -->
 <style>
@@ -46,14 +58,14 @@
         .map_wrap {
             position: relative;
             width: 100%;
-            height: 850px;
+            height: 900px;
         }
         #menu_wrap {
             position: absolute;
             top: 0;
             left: 0;
             bottom: 0;
-            width: 250px;
+            width: 300px;
             margin: 10px 0 30px 10px;
             padding: 5px;
             overflow-y: auto;
@@ -248,14 +260,14 @@
     <!-- Map Begin -->
   	
     <div class="listing__map">
-    <c:forEach var="searchList" items="${searchList}" >
+    <%-- <c:forEach var="searchList" items="${searchList}" > --%>
         <div class="map_wrap">
-        <div id="map" style="width:90%;height:90%;position:relative;overflow:hidden;"></div>
+        <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
         <div id="menu_wrap" class="bg_white">
             <div class="option">
                 <div>
                     <form onsubmit="searchPlaces(); return false;">
-                        키워드 : <input type="text" value=" ${searchList.name}" id="keyword" size="15">
+                        키워드 : <input type="text" value="${param.searchWord}" id="keyword" size="15">
                         <button type="submit">검색하기</button>
                     </form>
                 </div>
@@ -265,7 +277,8 @@
             <div id="pagination"></div>
         </div>
     </div>
-    </c:forEach>
+    <%-- </c:forEach> --%>
+    </div>
 
     <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=8a283a84534cab3af87f95bcee93c9a4&libraries=services"></script>
     <script>
@@ -477,22 +490,10 @@
             }
         }
     </script>
-    </div>
     
     <!-- Map End -->
 	<!-- </div> -->
-   
-    <!-- Js Plugins -->
-    <script src="<%=ctxPath %>/resources/js/jquery-3.3.1.min.js"></script>
-    <script src="<%=ctxPath %>/resources/js/bootstrap.min.js"></script>
-    <script src="<%=ctxPath %>/resources/js/jquery.nice-select.min.js"></script>
-    <script src="<%=ctxPath %>/resources/js/jquery-ui.min.js"></script>
-    <script src="<%=ctxPath %>/resources/js/jquery.nicescroll.min.js"></script>
-    <script src="<%=ctxPath %>/resources/js/jquery.barfiller.js"></script>
-    <script src="<%=ctxPath %>/resources/js/jquery.magnific-popup.min.js"></script>
-    <script src="<%=ctxPath %>/resources/js/jquery.slicknav.js"></script>
-    <script src="<%=ctxPath %>/resources/js/owl.carousel.min.js"></script>
-    <script src="<%=ctxPath %>/resources/js/main.js"></script>
+   </div>
 </body>
 
 
