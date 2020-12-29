@@ -199,7 +199,6 @@
             <div class="listing__text__top__left">
                 <h5>검색결과 List</h5>
             </div>
-            <div class="listing__text__top__right">정렬 <i class="fa fa-sort-amount-asc"></i></div>
         </div>
         <div class="listing__list">
             
