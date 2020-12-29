@@ -12,7 +12,7 @@
 
 <!-- Footer Section Begin -->
     <footer class="footer">
-        <div class="container">
+       <!--  <div class="container"> 1228_1554-->
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="footer__about">
@@ -87,6 +87,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        <!-- </div> 1228_1554-->
     </footer>
     <!-- Footer Section End -->

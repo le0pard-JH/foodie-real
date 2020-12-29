@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>키워드로 장소검색하고 목록으로 표출하기</title>
@@ -158,16 +159,18 @@
         }
     </style>
 </head>
+
 <body>
     <div class="map_wrap">
         <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+
         <div id="menu_wrap" class="bg_white">
             <div class="option">
                 <div>
-                   <form onsubmit="searchPlaces(); return false;">
-                        키워드 : <input type="text" value="" id="keyword" size="15">
+                    <form onsubmit="searchPlaces(); return false;">
+                        키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15">
                         <button type="submit">검색하기</button>
-                   </form> 
+                    </form>
                 </div>
             </div>
             <hr>
@@ -175,7 +178,8 @@
             <div id="pagination"></div>
         </div>
     </div>
-    <!-- <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=8a283a84534cab3af87f95bcee93c9a4&libraries=services"></script> -->
+
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=8a283a84534cab3af87f95bcee93c9a4&libraries=services"></script>
     <script>
         // 마커를 담을 배열입니다
         var markers = [];
@@ -192,7 +196,7 @@
         var infowindow = new kakao.maps.InfoWindow({
             zIndex: 1
         });
-         // 키워드로 장소를 검색합니다
+        // 키워드로 장소를 검색합니다
         searchPlaces();
         // 키워드 검색을 요청하는 함수입니다
         function searchPlaces() {
@@ -200,12 +204,10 @@
             if (!keyword.replace(/^\s+|\s+$/g, '')) {
                 alert('키워드를 입력해주세요!');
                 return false;
-                
             }
             // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
             ps.keywordSearch(keyword, placesSearchCB);
-        } 
-        
+        }
         // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
         function placesSearchCB(data, status, pagination) {
             if (status === kakao.maps.services.Status.OK) {
@@ -253,10 +255,26 @@
                     });
                     itemEl.onmouseover = function() {
                         displayInfowindow(marker, title);
+                        //console.log(rid);
+                        var proc1 = $(this).text();
+                        var proc2 = proc1.substring(0, 11);
+                        var storeId = Number(proc2);
+                        //console.log(storeId);
+                        
+                        $(this).click(function() {
+                           console.log(storeId);
+                        })
+                        
                     };
                     itemEl.onmouseout = function() {
                         infowindow.close();
                     };
+                    itemEl.click(function() {
+                       var proc1 = $(this).text();
+                        var proc2 = proc1.substring(0, 11);
+                        var storeId = Number(proc2);
+                        console.log(storeId);
+                    });
                 })(marker, places[i].place_name);
                 fragment.appendChild(itemEl);
             }
@@ -268,10 +286,15 @@
         }
         // 검색결과 항목을 Element로 반환하는 함수입니다
         function getListItem(index, places) {
+           
+           var rid = places.id;
             var el = document.createElement('li'),
                 itemStr = '<span class="markerbg marker_' + (index + 1) + '"></span>' +
                 '<div class="info">' +
-                '   <h5>' + places.place_name + '</h5>';
+                '   <span class="storeid">' + rid + '</span> <h5>' + places.place_name + '</h5>';
+              
+                console.log('rid : '+ rid);
+                
             if (places.road_address_name) {
                 itemStr += '    <span>' + places.road_address_name + '</span>' +
                     '   <span class="jibun gray">' + places.address_name + '</span>';
@@ -282,11 +305,8 @@
                 '</div>';
             el.innerHTML = itemStr;
             el.className = 'item';
-            
-            // console log start
-            
-         // console start
-            console.log("");
+            // console start
+/*             console.log("");
             console.log("start");
             console.log(places.address_name);
             console.log(places.category_group_code);
@@ -297,12 +317,10 @@
             console.log(places.place_name);
             console.log(places.place_url);
             console.log(places.road_address_name);
-            
-            // console log end
             console.log(places.x);
             console.log(places.y);
             console.log("end");
-            console.log("");
+            console.log(""); */
             // console end
             return el;
         }
@@ -372,7 +390,9 @@
         }
     </script>
 
-    
+    <form name="searchFrm">
+        form test
+    </form>
 </body>
 
 </html>

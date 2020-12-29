@@ -11,11 +11,13 @@ public class SearchVO {
 	private String postcode;	 // 점포 우편번호
 	private String address; 	 // 점포 주소
 	private String rownum;		 // 
+	private String searchword;	 // 검색어
+	private String count;
 	
 	public SearchVO() {}
 	
 	public SearchVO(String code, String type, String open_status, String hygine, String name, String call,
-			String postcode, String address, String rownum) {
+			String postcode, String address, String rownum, String searchword, String count) {
 		
 		this.code = code;
 		this.type = type;
@@ -25,7 +27,10 @@ public class SearchVO {
 		this.call = call;
 		this.postcode = postcode;
 		this.address = address;
-		this.rownum=rownum;
+		this.rownum = rownum;
+		this.searchword = searchword;
+		this.count = count;
+		
 	}
 	
 	public String getCode() {
@@ -85,8 +90,21 @@ public class SearchVO {
 		this.rownum = rownum;
 	}
 	
+	public String getSearchword() {
+		return searchword;
+	}
+
+	public void setSearchword(String searchword) {
+		this.searchword = searchword;
+	}
 	
-	
+	public String getCount() {
+		return searchword;
+	}
+
+	public void setCount(String count) {
+		this.count = count;
+	}
 	
 	
 }

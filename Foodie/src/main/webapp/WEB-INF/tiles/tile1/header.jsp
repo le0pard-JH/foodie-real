@@ -86,9 +86,9 @@ function goSearch() {
                     
                     <!-- 머릿말 -->
                         <div class="section-title">
-                            <h3 style="margin-top: 20px;">솔직한 리뷰, 믿을 수 있는 평점! </h3>
+                            <h3 style="margin-top: 20px; color:white;">솔직한 리뷰, 믿을 수 있는 평점! </h3>
                             <br>
-                            <h3>Foodie</h3>
+                            <h3 style="color:white;">Foodie</h3>
                         </div>
                         <div class="hero__search__form">
                         

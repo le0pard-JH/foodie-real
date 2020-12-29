@@ -50,7 +50,7 @@ public class FoodieController {
 		String searchType = request.getParameter("searchType"); // 폼태그에서 넘어온것
 		String searchType2 = request.getParameter("searchType2"); // 폼태그에서 넘어온것
 		String searchWord = request.getParameter("searchWord"); // 폼태그에서 넘어온것
-
+				
 		System.out.println("입력한 검색어 : " + searchWord);
 
 		if (searchWord == null) { // 검색어가 없든지 텅빈것 아무것도안누르고 엔터누른경우
@@ -71,7 +71,7 @@ public class FoodieController {
 		paraMap.put("searchType", searchType);
 		paraMap.put("searchType2", searchType2);
 		paraMap.put("searchWord", searchWord);
-
+		
 		// *** === 검색어가 있을때만 검색어도 같이 넘겨준다. 없을면 공백이 넘어가버리므로 === *** //
 		if (!"".equals(searchWord)) {
 			mav.addObject("paraMap", paraMap); // 검색을 했을때만 맵을 뷰단으로 보내버린다.

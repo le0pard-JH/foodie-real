@@ -757,9 +757,9 @@ div.set-bg{
                         <div class="testimonial__item" data-hash="review-3">
                             <p>"제가 먹은것중에 제일 맛있어요"</p>
                             <div class="testimonial__item__author">
-                                <a href="#review-2"><<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/testimonial/author-2.png" alt=""></a>
-                                <a href="#review-3" class="active"><<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/testimonial/author-3.png" alt=""></a>
-                                <a href="#review-1"><<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/testimonial/author-1.png" alt=""></a>
+                                <a href="#review-2"><img src="<%=ctxPath %>/resources/img/testimonial/author-2.png" alt=""></a>
+                                <a href="#review-3" class="active"><img src="<%=ctxPath %>/resources/img/testimonial/author-3.png" alt=""></a>
+                                <a href="#review-1"><img src="<%=ctxPath %>/resources/img/testimonial/author-1.png" alt=""></a>
                             </div>
                             <div class="testimonial__item__author__text">
                                 <h5>홍승의 -</h5>
