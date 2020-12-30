@@ -14,17 +14,20 @@
             font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
             font-size: 12px;
         }
+
         .map_wrap a,
         .map_wrap a:hover,
         .map_wrap a:active {
             color: #000;
             text-decoration: none;
         }
+
         .map_wrap {
             position: relative;
             width: 100%;
             height: 850px;
         }
+
         #menu_wrap {
             position: absolute;
             top: 0;
@@ -39,9 +42,11 @@
             font-size: 12px;
             border-radius: 10px;
         }
+
         .bg_white {
             background: #fff;
         }
+
         #menu_wrap hr {
             display: block;
             height: 1px;
@@ -49,18 +54,23 @@
             border-top: 2px solid #5F5F5F;
             margin: 3px 0;
         }
+
         #menu_wrap .option {
             text-align: center;
         }
+
         #menu_wrap .option p {
             margin: 10px 0;
         }
+
         #menu_wrap .option button {
             margin-left: 5px;
         }
+
         #placesList li {
             list-style: none;
         }
+
         #placesList .item {
             position: relative;
             border-bottom: 1px solid #888;
@@ -68,29 +78,36 @@
             cursor: pointer;
             min-height: 65px;
         }
+
         #placesList .item span {
             display: block;
             margin-top: 4px;
         }
+
         #placesList .item h5,
         #placesList .item .info {
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
         }
+
         #placesList .item .info {
             padding: 10px 0 10px 55px;
         }
+
         #placesList .info .gray {
             color: #8a8a8a;
         }
+
         #placesList .info .jibun {
             padding-left: 26px;
             background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;
         }
+
         #placesList .info .tel {
             color: #009900;
         }
+
         #placesList .item .markerbg {
             float: left;
             position: absolute;
@@ -99,64 +116,83 @@
             margin: 10px 0 0 10px;
             background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;
         }
+
         #placesList .item .marker_1 {
             background-position: 0 -10px;
         }
+
         #placesList .item .marker_2 {
             background-position: 0 -56px;
         }
+
         #placesList .item .marker_3 {
             background-position: 0 -102px
         }
+
         #placesList .item .marker_4 {
             background-position: 0 -148px;
         }
+
         #placesList .item .marker_5 {
             background-position: 0 -194px;
         }
+
         #placesList .item .marker_6 {
             background-position: 0 -240px;
         }
+
         #placesList .item .marker_7 {
             background-position: 0 -286px;
         }
+
         #placesList .item .marker_8 {
             background-position: 0 -332px;
         }
+
         #placesList .item .marker_9 {
             background-position: 0 -378px;
         }
+
         #placesList .item .marker_10 {
             background-position: 0 -423px;
         }
+
         #placesList .item .marker_11 {
             background-position: 0 -470px;
         }
+
         #placesList .item .marker_12 {
             background-position: 0 -516px;
         }
+
         #placesList .item .marker_13 {
             background-position: 0 -562px;
         }
+
         #placesList .item .marker_14 {
             background-position: 0 -608px;
         }
+
         #placesList .item .marker_15 {
             background-position: 0 -654px;
         }
+
         #pagination {
             margin: 10px auto;
             text-align: center;
         }
+
         #pagination a {
             display: inline-block;
             margin-right: 10px;
         }
+
         #pagination .on {
             font-weight: bold;
             cursor: default;
             color: #777;
         }
+
     </style>
 </head>
 
@@ -181,6 +217,10 @@
 
     <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=8a283a84534cab3af87f95bcee93c9a4&libraries=services"></script>
     <script>
+        $(document).ready(function() {
+            console.log('ready');
+        });
+
         // 마커를 담을 배열입니다
         var markers = [];
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -230,11 +270,17 @@
                 menuEl = document.getElementById('menu_wrap'),
                 fragment = document.createDocumentFragment(),
                 bounds = new kakao.maps.LatLngBounds(),
+                skmpla = '',
+                subpla = '',
+                sridpla = '',
+                ikplapls = '',
+                regSkplaid = '',
                 listStr = '';
             // 검색 결과 목록에 추가된 항목들을 제거합니다
             removeAllChildNods(listEl);
             // 지도에 표시되고 있는 마커를 제거합니다
             removeMarker();
+
             for (var i = 0; i < places.length; i++) {
                 // 마커를 생성하고 지도에 표시합니다
                 var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
@@ -253,28 +299,20 @@
                     kakao.maps.event.addListener(marker, 'mouseout', function() {
                         infowindow.close();
                     });
+                    itemEl.onclick = function() {
+                        ikplapls = $('input.ikplapltxt').val().replace(' ', '');
+                        skmpla = $(this).text().replace(/ /g, '');
+                        subpla = skmpla.substring(0, 11);
+                        regSkplaid = subpla.replace(/[^0-9]/g, "");
+                        console.log(regSkplaid + ', ' + regSkplaid.length + ', ' + typeof(regSkplaid));
+                        placeFormal(regSkplaid);
+                    };
                     itemEl.onmouseover = function() {
                         displayInfowindow(marker, title);
-                        //console.log(rid);
-                        var proc1 = $(this).text();
-                        var proc2 = proc1.substring(0, 11);
-                        var storeId = Number(proc2);
-                        //console.log(storeId);
-                        
-                        $(this).click(function() {
-                           console.log(storeId);
-                        })
-                        
                     };
                     itemEl.onmouseout = function() {
                         infowindow.close();
                     };
-                    itemEl.click(function() {
-                       var proc1 = $(this).text();
-                        var proc2 = proc1.substring(0, 11);
-                        var storeId = Number(proc2);
-                        console.log(storeId);
-                    });
                 })(marker, places[i].place_name);
                 fragment.appendChild(itemEl);
             }
@@ -286,41 +324,42 @@
         }
         // 검색결과 항목을 Element로 반환하는 함수입니다
         function getListItem(index, places) {
-           
-           var rid = places.id;
+
+            var rid = places.id;
             var el = document.createElement('li'),
                 itemStr = '<span class="markerbg marker_' + (index + 1) + '"></span>' +
-                '<div class="info">' +
-                '   <span class="storeid">' + rid + '</span> <h5>' + places.place_name + '</h5>';
-              
-                console.log('rid : '+ rid);
-                
+                '<div class="info">' + ' <input type="hidden" value="' + rid + '" class="ikplapltxt" />' +
+                '   <span id="storeidlaa" class="spandata" style="display:none;" >' + rid + '</span> ' +
+                '<h5>' + places.place_name + '</h5>';
+
+            console.log(index + ', ' + rid + ', ' + rid.length + ', ' + typeof(rid));
+
             if (places.road_address_name) {
-                itemStr += '    <span>' + places.road_address_name + '</span>' +
-                    '   <span class="jibun gray">' + places.address_name + '</span>';
+                itemStr += ' <span>' + places.road_address_name + '</span>' +
+                    ' <span class="jibun gray">' + places.address_name + '</span>';
             } else {
-                itemStr += '    <span>' + places.address_name + '</span>';
+                itemStr += ' <span>' + places.address_name + '</span>';
             }
-            itemStr += '  <span class="tel">' + places.phone + '</span>' +
+            itemStr += ' <span class="tel">' + places.phone + '</span>' +
                 '</div>';
             el.innerHTML = itemStr;
             el.className = 'item';
             // console start
-/*             console.log("");
-            console.log("start");
-            console.log(places.address_name);
-            console.log(places.category_group_code);
-            console.log(places.category_group_name);
-            console.log(places.distance);
-            console.log(places.id);
-            console.log(places.phone);
-            console.log(places.place_name);
-            console.log(places.place_url);
-            console.log(places.road_address_name);
-            console.log(places.x);
-            console.log(places.y);
-            console.log("end");
-            console.log(""); */
+            /*             console.log("");
+                        console.log("start");
+                        console.log(places.address_name);
+                        console.log(places.category_group_code);
+                        console.log(places.category_group_name);
+                        console.log(places.distance);
+                        console.log(places.id);
+                        console.log(places.phone);
+                        console.log(places.place_name);
+                        console.log(places.place_url);
+                        console.log(places.road_address_name);
+                        console.log(places.x);
+                        console.log(places.y);
+                        console.log("end");
+                        console.log(""); */
             // console end
             return el;
         }
@@ -388,7 +427,35 @@
                 el.removeChild(el.lastChild);
             }
         }
+
+        function placeFormal(cliregSkplaid) {
+            console.log('placeFormal : ' + cliregSkplaid + ', ' + cliregSkplaid.length + ', ' + typeof(cliregSkplaid));
+            $("input.kakao_store_id").val(cliregSkplaid);
+            var text = $("input.kakao_store_id").val();
+            //console.log(text);
+            var kakao_store_id = $("form[name=kakao_store_id]").serialize();
+            // var kakao_store_id = '26217952';
+            $.ajax({
+                type: "POST",
+                url: "/foodie/get/json.food",
+                dataType: "json",
+                data: kakao_store_id,
+                success: function(foodie) { //json 데이터를 반환 받음
+                    // console.log(foodie);
+                    console.log(foodie.basicInfo);
+                    // proc(foodie);
+                },
+                error: function() {
+                    console.log("Failed");
+                }
+            });
+        }
+
     </script>
+
+    <form name="kakao_store_id">
+        <input type="text" name="kakao_store_id" id="kakao_store_id" class="kakao_store_id" value="" />
+    </form>
 
     <form name="searchFrm">
         form test
