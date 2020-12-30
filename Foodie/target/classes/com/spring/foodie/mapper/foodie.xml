@@ -3,12 +3,9 @@
 <!-- ==== #29. mapper 기본설정 ==== -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- ==== #29. 루트 엘리먼트 & 네임스페이스 설정(프로젝트 전체내에서 유일해야 한다.) ==== -->
-
-
 <mapper namespace="foodie">
 
- 
+ <!-- 
 <select id="searchList" parameterType="HashMap" resultType="com.spring.foodie.model.SearchVO">
 	SELECT ROWNUM, STORE.CODE, STORE.TYPE, STORE.OPEN_STATUS, STORE.HYGINE, STORE.NAME, STORE.CALL,
 	NVL(STORE.POSTCODE_NEW, STORE.POSTCODE_OLD) AS POSTCODE, NVL(STORE.ADDR_NEW, STORE.ADDR_OLD) AS ADDRESS
@@ -20,11 +17,199 @@
 	LIKE LOWER(REPLACE(TRIM('%'||#{searchWord}||'%'), ' ', '%'))
 	ORDER BY ROWNUM ASC
 </select>
-
+ -->
  
  
 
+<select id="getStoreDetail" parameterType="String" resultType="com.spring.foodie.model.SearchVO">
+	SELECT ROWNUM, STORE.CODE, STORE.TYPE, STORE.OPEN_STATUS, STORE.HYGINE,
+	STORE.NAME, STORE.CALL,
+	NVL(STORE.POSTCODE_NEW, STORE.POSTCODE_OLD) AS POSTCODE, NVL(STORE.ADDR_NEW, STORE.ADDR_OLD)
+	AS ADDRESS
+	FROM ( SELECT CODE, DIST_CODE, OPEN_STATUS, STATUS_DETAIL, CALL,
+	POSTCODE_OLD, ADDR_OLD, POSTCODE_NEW, ADDR_NEW,
+	NAME, BUSINESS_TYPE, COORDINATES_X, COORDINATES_Y, HYGIENE_TYPE AS HYGINE,
+	BUSINESS_TYPE AS BUSINESS, TYPE
+	FROM STORE_KOREA WHERE STATUS_DETAIL = '영업') STORE
+	WHERE STORE.code = #{code}
+	</select>
+	
+	<resultMap type="HashMap" id="moreViewresultMap">
+		<result property="RNO" column="RNO" javaType="String" />
+		<result property="NAME" column="NAME" javaType="String" />
+		<result property="CALL" column="CALL" javaType="String" />
+		<result property="ADDRESS" column="ADDRESS" javaType="String" />
+		<result property="CODE" column="CODE" javaType="String" />
+	</resultMap>
+	
+	<select id="moreView" resultMap="moreViewresultMap" parameterType="HashMap">
+	SELECT RNO, CODE, NAME, CALL, POSTCODE, ADDRESS
+    from
+    (
+    SELECT ROWNUM as RNO , STORE.CODE, STORE.NAME, STORE.CALL,
+	NVL(STORE.POSTCODE_NEW, STORE.POSTCODE_OLD) AS POSTCODE, NVL(STORE.ADDR_NEW, STORE.ADDR_OLD)
+	AS ADDRESS
+	FROM ( SELECT CODE, DIST_CODE, OPEN_STATUS, STATUS_DETAIL, CALL,
+	POSTCODE_OLD, ADDR_OLD, POSTCODE_NEW, ADDR_NEW,
+	NAME, BUSINESS_TYPE, COORDINATES_X, COORDINATES_Y, HYGIENE_TYPE AS HYGINE,
+	BUSINESS_TYPE AS BUSINESS, TYPE,
+	NAME || ADDR_OLD || ADDR_NEW || HYGIENE_TYPE || BUSINESS_TYPE || NAME ||
+	ADDR_OLD || ADDR_NEW || HYGIENE_TYPE || BUSINESS_TYPE AS SEARCH_ALL
+	FROM STORE_KOREA WHERE STATUS_DETAIL = '영업' ORDER BY NVL(POSTCODE_NEW,
+	POSTCODE_OLD) ASC) STORE
+	WHERE LOWER(REPLACE(TRIM(STORE.SEARCH_ALL), ' ', ''))
+	LIKE LOWER(REPLACE(TRIM('%'||#{place}||'%'), ' ', '%'))
+	ORDER BY ROWNUM ASC
+    )result
+    where result.rno between #{scrollCtrl}*20-19 and #{scrollCtrl}*20
+	</select>
+ 
+  <select id="searchList" parameterType="HashMap" resultType="com.spring.foodie.model.SearchVO">
+    SELECT ROWNUM, STORE.CODE, STORE.TYPE, STORE.OPEN_STATUS, STORE.HYGINE, STORE.NAME, STORE.CALL,
+    NVL(STORE.POSTCODE_NEW, STORE.POSTCODE_OLD) AS POSTCODE, NVL(STORE.ADDR_NEW, STORE.ADDR_OLD) AS ADDRESS
+    FROM ( SELECT CODE, DIST_CODE, OPEN_STATUS, STATUS_DETAIL, CALL, POSTCODE_OLD, ADDR_OLD, POSTCODE_NEW, ADDR_NEW,
+    NAME, BUSINESS_TYPE, COORDINATES_X, COORDINATES_Y, HYGIENE_TYPE AS HYGINE, BUSINESS_TYPE AS BUSINESS, TYPE,
+    NAME || ADDR_OLD || ADDR_NEW || HYGIENE_TYPE || BUSINESS_TYPE || NAME || ADDR_OLD || ADDR_NEW || HYGIENE_TYPE || BUSINESS_TYPE AS
+    SEARCH_ALL
+    FROM STORE_KOREA WHERE STATUS_DETAIL = '영업' ORDER BY NVL(POSTCODE_NEW, POSTCODE_OLD) ASC) STORE
+    WHERE LOWER(REPLACE(TRIM(STORE.SEARCH_ALL), ' ', ''))
+    LIKE LOWER(REPLACE(TRIM('%'||#{searchWord}||'%'), ' ', '%'))
+    ORDER BY ROWNUM ASC
+  </select>
+	
+	
 
+	<!-- 지훈시작  -->
+		
+	<!-- == 상품가게 에 딸린 댓글들 대댓글 정리 이전을 조회해오는 것  -->
+    <select id="getCommentList" parameterType="String" resultType="com.spring.foodie.model.CommentVO"> 
+		select seq, fk_email, name, content, spoint, regDate, store_id, status, likecnt, cntcomments, parentSeq, depthno, groupno
+     
+			from 
+			(
+    		select rownum AS rno
+         	, seq, fk_email, name, content, spoint, regDate, store_id, status, likecnt, cntcomments, parentSeq, depthno, groupno
+    		from 
+		    	(
+        			select seq, fk_email, name, content, spoint, regDate, store_id, status, likecnt, cntcomments, parentSeq, depthno, groupno
+        			from tbl_comment
+        			where status = 1 and store_id = #{code}
+        			start with parentSeq = 0 
+        			connect by prior seq = parentSeq 
+	        		order siblings by groupno desc, seq asc  
+        
+    			) V 
+			) T 
+		where rno between 1 and 10
+    </select>
+    
+   <!--  === 댓글쓰기(tbl_comment 테이블에 insert) === -->
+   
+   
+   <insert id="addComment" parameterType="com.spring.foodie.model.CommentVO">
+    	insert into tbl_comment(seq, fk_email, name, content, spoint, regDate, store_id, status, likecnt, cntcomments, parentSeq, depthno, groupno)
+    	<if test='parentSeq == "0"'>
+    		values(commentSeq.nextval, #{fk_email}, #{name}, #{content}, #{spoint}, default, #{store_id}, default, default, default, #{parentSeq}, default, groupSeq.nextval)
+    	</if>
+    	<if test='parentSeq != "0"'>
+    		values(commentSeq.nextval, #{fk_email}, #{name}, #{content}, 0, default, #{store_id}, default, default, default, #{parentSeq}, #{depthno}+1, #{groupno})
+        </if>
+   </insert>
+   
+   	
+	<update id="addCommentCnt" parameterType="String">
+			
+    	update tbl_comment set CNTCOMMENTS = CNTCOMMENTS + 1 
+    	where seq = #{parentSeq}
+    
+	</update>
+		
+	<select id="emailDuplicateCheck" parameterType="String" resultType="com.spring.foodie.model.MemberVO">
+      select * from tbl_member where email = #{email}
+   </select>
+   
+   <!-- === 로그인 처리하기 === -->
+   <select id="getLoginMember" resultType="com.spring.foodie.model.MemberVO" parameterType="HashMap">     
+      select no, type, kakaoid, name, email, pwd, to_char(registerday, 'yyyy-mm-dd'), status, idle      
+      from tbl_member
+      where email = #{email} and pwd = #{pwd} 
+   </select>
+
+   <!-- === 카카오로그인 처리하기 === -->
+   <select id="getkakaoLoginMember" resultType="com.spring.foodie.model.MemberVO" parameterType="String">     
+      select no, type, kakaoid, name, email, pwd, registerday, status, idle      
+      from tbl_member
+      where  kakaoid = #{kakaoid}  
+   </select>
+   
+   
+   
+   <insert id="setLoginHistory" parameterType="HashMap">
+   
+         insert into tbl_loginhistory(fk_email, logindate, clientip)
+          values(#{email}, default, #{clientip})  
+   </insert>
+   
+   <!-- == 로그인 갭 가져오기 == -->
+   <select id="getloginHistoryGap" resultType="com.spring.foodie.model.LoginHistoryVO" parameterType="String">     
+   select trunc( months_between(sysdate, max(logindate)) ) AS lastlogingap
+    from tbl_loginhistory 
+    where fk_email = #{email} 
+   </select>
+   
+   
+   <insert id="registerMember" parameterType="HashMap">
+   insert into tbl_member(no, type, kakaoid, name, email, pwd, mobile,
+   registerday, status, idle)
+   values(seq_memberno.nextval, default, #{kakaoid}, #{name}, #{email}, #{pwd}, #{mobile}, default,
+   default, default)   
+   </insert>    
+   
+<!--    <insert id="createAuthKey">
+   insert into userAuth values(#{userEmail}, #{authKey})
+   </insert>
+
+   <update id="userAuth">
+      <![CDATA[update user set userCertification = 1 where (select count(*) from userAuth where userEmail = #{userEmail}) > 0]]>
+   </update> -->
+   
+
+   <select id="getUserInfo" resultType="com.spring.foodie.model.MemberVO" parameterType="String">
+      select * from tbl_member where email = #{email} 
+   </select>	
+		
+	<!-- 지훈 끝  -->
+	
+	
+	
+	<insert id="likeAdd" parameterType="HashMap">
+   insert into tbl_comment_like(FK_EMAIL, FK_SEQ)
+   values(#{email}, #{seq})
+	</insert>
+	
+	
+	<update id="likeAddCnt" parameterType="String">
+		update tbl_comment set likecnt = likecnt + 1 
+    	where seq = #{seq}
+	</update>
+	
+	
+	<delete id="delLike" parameterType="HashMap">
+		delete from tbl_comment_like
+		where fk_email = #{email} and fk_seq = #{seq}
+	</delete>
+		
+	<update id="likeDelCnt" parameterType="String">
+		update tbl_comment set likecnt = likecnt - 1 
+    	where seq = #{seq}	
+	</update>
+	 
+	 
+	 <select id="duplicateCheckLike" parameterType="HashMap" resultType="int">
+	 	select count(*) 
+	 	from tbl_comment_like
+		where fk_email = #{email} and fk_seq = #{seq}
+	 </select>
 </mapper>
 
 

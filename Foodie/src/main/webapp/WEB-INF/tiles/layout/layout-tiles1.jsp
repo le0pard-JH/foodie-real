@@ -27,17 +27,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Css Styles -->
-  <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/font-awesome.min.css" />
-  <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/elegant-icons.css" />
-  <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/flaticon.css" />
-  <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/nice-select.css" />
-  <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/barfiller.css" />
-  <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/magnific-popup.css"/>
-  <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/jquery-ui.min.css" />
-  <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/owl.carousel.min.css" />
-  <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/slicknav.min.css" />
-  <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="<%= ctxPath %>/resources/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="<%= ctxPath %>/resources/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="<%= ctxPath %>/resources/css/elegant-icons.css" />
+  <link rel="stylesheet" type="text/css" href="<%= ctxPath %>/resources/css/flaticon.css" />
+  <link rel="stylesheet" type="text/css" href="<%= ctxPath %>/resources/css/nice-select.css" />
+  <link rel="stylesheet" type="text/css" href="<%= ctxPath %>/resources/css/barfiller.css" />
+  <link rel="stylesheet" type="text/css" href="<%= ctxPath %>/resources/css/magnific-popup.css"/>
+  <link rel="stylesheet" type="text/css" href="<%= ctxPath %>/resources/css/jquery-ui.min.css" />
+  <link rel="stylesheet" type="text/css" href="<%= ctxPath %>/resources/css/owl.carousel.min.css" />
+  <link rel="stylesheet" type="text/css" href="<%= ctxPath %>/resources/css/slicknav.min.css" />
+  <link rel="stylesheet" type="text/css" href="<%= ctxPath %>/resources/css/style.css" />
   
   <%--  ===== #179. 스피너를 사용하기 위해  jquery-ui 사용하기 ===== --%>
   <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resources/jquery-ui-1.11.4.custom/jquery-ui.css" />

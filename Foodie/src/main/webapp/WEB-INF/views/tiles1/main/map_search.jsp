@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>키워드로 장소검색하고 목록으로 표출하기</title>
@@ -158,9 +159,11 @@
         }
     </style>
 </head>
+
 <body>
     <div class="map_wrap">
         <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+
         <div id="menu_wrap" class="bg_white">
             <div class="option">
                 <div>
@@ -175,6 +178,7 @@
             <div id="pagination"></div>
         </div>
     </div>
+
     <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=8a283a84534cab3af87f95bcee93c9a4&libraries=services"></script>
     <script>
         // 마커를 담을 배열입니다
@@ -220,6 +224,9 @@
                 return;
             }
         }
+        
+        var place_name_list = null;
+        
         // 검색 결과 목록과 마커를 표출하는 함수입니다
         function displayPlaces(places) {
             var listEl = document.getElementById('placesList'),
@@ -232,6 +239,20 @@
             // 지도에 표시되고 있는 마커를 제거합니다
             removeMarker();
             for (var i = 0; i < places.length; i++) {
+            	//console.log('1');
+            	//console.log(places);
+                $.each(places, function(index, place_list) {
+                	
+                	//place_name_list = place_list.place_name;
+                	
+                	//console.log(place_list.place_name);
+
+                    /* $('div.store_time').append(
+                        realHour.timeName + ' : ' + realHour.dayOfWeek + ' ' +
+                        realHour.timeSE + '<br>'); */
+
+                });
+            	//console.log('1');
                 // 마커를 생성하고 지도에 표시합니다
                 var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
                     marker = addMarker(placePosition, i),
@@ -251,10 +272,55 @@
                     });
                     itemEl.onmouseover = function() {
                         displayInfowindow(marker, title);
+                        //console.log(rid);
+                        var proc1 = $(this).text();
+                        var proc2 = proc1.substring(0, 11);
+                        var storeId = Number(proc2);
+                        //console.log(storeId);
+                        
+                        $(this).click(function() {
+                           console.log(storeId);
+                           //console.log(places.placename);
+                           //console.log(places.place_name + ', ' + storeId);
+                        	//var store_name_list1 = places[i].place_name;
+                        	//console.log(store_name_list1);
+                        	//console.log(place_name_list);
+                        	
+                        	var text = $("input.kakao_store_id").val(storeId);
+       						 console.log(text);
+                        	
+                        	//var kakao_store_id = storeId;
+                        	
+                        	$.ajax({
+                                type: "POST",
+                                url: "/foodie/get/json.food",
+                                dataType: "json",
+                                data: kakao_store_id,
+                                success: function(foodie) { //json 데이터를 반환 받음
+                                    // console.log(foodie);
+                                     console.log(foodie.basicInfo);
+                                   // proc(foodie);
+
+                                },
+                                error: function() {
+                                    console.log("Failed");
+                                }
+                            });
+                        	
+                        })
+                        
                     };
                     itemEl.onmouseout = function() {
                         infowindow.close();
                     };
+                    itemEl.click(function() {
+                        var proc1 = $(this).text();
+                        var proc2 = proc1.substring(0, 11);
+                        var storeId = Number(proc2);
+                        
+                        console.log(storeId);
+                        
+                    });
                 })(marker, places[i].place_name);
                 fragment.appendChild(itemEl);
             }
@@ -266,10 +332,16 @@
         }
         // 검색결과 항목을 Element로 반환하는 함수입니다
         function getListItem(index, places) {
+           
+           var rid = places.id;
+           var store_name_list =  places.place_name;
             var el = document.createElement('li'),
                 itemStr = '<span class="markerbg marker_' + (index + 1) + '"></span>' +
                 '<div class="info">' +
-                '   <h5>' + places.place_name + '</h5>';
+                '   <span class="storeid">' + rid + '</span> <h5>' + places.place_name + '</h5>';
+              
+                console.log('rid : '+ rid);
+                
             if (places.road_address_name) {
                 itemStr += '    <span>' + places.road_address_name + '</span>' +
                     '   <span class="jibun gray">' + places.address_name + '</span>';
@@ -280,11 +352,8 @@
                 '</div>';
             el.innerHTML = itemStr;
             el.className = 'item';
-            
-            // console log start
-            
-         // console start
-            console.log("");
+            // console start
+/*             console.log("");
             console.log("start");
             console.log(places.address_name);
             console.log(places.category_group_code);
@@ -295,21 +364,85 @@
             console.log(places.place_name);
             console.log(places.place_url);
             console.log(places.road_address_name);
-            
-            // console log end
             console.log(places.x);
             console.log(places.y);
             console.log("end");
-            console.log("");
+            console.log(""); */
             // console end
             return el;
         }
-@@ -445,6 +455,10 @@
+        // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
+        function addMarker(position, idx, title) {
+            var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+                imageSize = new kakao.maps.Size(36, 37), // 마커 이미지의 크기
+                imgOptions = {
+                    spriteSize: new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
+                    spriteOrigin: new kakao.maps.Point(0, (idx * 46) + 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+                    offset: new kakao.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+                },
+                markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+                marker = new kakao.maps.Marker({
+                    position: position, // 마커의 위치
+                    image: markerImage
+                });
+            marker.setMap(map); // 지도 위에 마커를 표출합니다
+            markers.push(marker); // 배열에 생성된 마커를 추가합니다
+            return marker;
+        }
+        // 지도 위에 표시되고 있는 마커를 모두 제거합니다
+        function removeMarker() {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+            markers = [];
+        }
+        // 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
+        function displayPagination(pagination) {
+            var paginationEl = document.getElementById('pagination'),
+                fragment = document.createDocumentFragment(),
+                i;
+            // 기존에 추가된 페이지번호를 삭제합니다
+            while (paginationEl.hasChildNodes()) {
+                paginationEl.removeChild(paginationEl.lastChild);
+            }
+            for (i = 1; i <= pagination.last; i++) {
+                var el = document.createElement('a');
+                el.href = "#";
+                el.innerHTML = i;
+                if (i === pagination.current) {
+                    el.className = 'on';
+                } else {
+                    el.onclick = (function(i) {
+                        return function() {
+                            pagination.gotoPage(i);
+                        }
+                    })(i);
+                }
+                fragment.appendChild(el);
+            }
+            paginationEl.appendChild(fragment);
+        }
+        // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
+        // 인포윈도우에 장소명을 표시합니다
+        function displayInfowindow(marker, title) {
+            var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
+            infowindow.setContent(content);
+            infowindow.open(map, marker);
+        }
+        // 검색결과 목록의 자식 Element를 제거하는 함수입니다
+        function removeAllChildNods(el) {
+            while (el.hasChildNodes()) {
+                el.removeChild(el.lastChild);
+            }
         }
     </script>
 
     <form name="searchFrm">
-    form test
+        form test
+    </form>
+    
+    <form name="kakao_store_id">
+        <input type="text" name="kakao_store_id" id="kakao_store_id" class="kakao_store_id" value="" placeholder="검색어 입력" />
     </form>
 </body>
 
