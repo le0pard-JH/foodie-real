@@ -945,6 +945,7 @@ ol {
 
 .ov-hid {
 	overflow: hidden;
+	padding-left: 270px;
 }
 
 .filter__title h5 {
@@ -1261,6 +1262,7 @@ ol {
 
 .nice-scroll {
 	height: 100%;
+	overflow-y: hidden;
 }
 
 .listing__text__top {
@@ -1298,6 +1300,7 @@ ol {
 }
 
 .listing {
+	width: 55%;
 	height: 100%;
 	padding: 0 40px;
 	padding-top: 140px;
@@ -1315,7 +1318,7 @@ ol {
 }
 
 .listing .listing__list .listing__item {
-	/* max-width: calc(50% - 30px); */
+	max-width: calc(50% - 30px);
 	float: left;
 	margin-right: 30px;
 	-webkit-box-flex: 0;
@@ -1463,6 +1466,7 @@ ol {
 .listing__item__text__info__left img {
 	display: inline-block;
 	margin-right: 10px;
+	width: 34px;
 	height: 34px;
 	border-radius: 50%;
 }
@@ -1487,15 +1491,17 @@ ol {
 
 .listing__map {
 	height: 100%;
-	width: 45%;
-	margin-top: 105px;
-	float: left;
+    width: 45%;
+    margin-top: 105px;
+    float: left;
 }
 
 .listing__map iframe {
 	width: 100%;
-	height: 100%;
+    height: 100%;
 }
+
+
 
 /*---------------------
   Listing Hero
@@ -1584,7 +1590,24 @@ ol {
   Listing Details
 -----------------------*/
 
+.listing__details__about {
+	margin-bottom: 35px;
+}
+
+.listing__details__about h4 {
+	color: #323232;
+	font-weight: 600;
+	margin-bottom: 18px;
+}
+
+.listing__details__about p {
+	font-size: 15px;
+	line-height: 25px;
+	margin-bottom: 0;
+}
+
 .listing__details__gallery {
+	border-top: 1px solid #e1e1e1;
 	padding-top: 12px;
 	margin-bottom: 50px;
 }
@@ -3012,6 +3035,7 @@ ol {
 	}
 	.ov-hid {
 		overflow: hidden;
+		padding-left: 240px;
 	}
 	.listing__details__rating__bar__item .barfiller {
 		width: 425px;
@@ -3105,6 +3129,7 @@ ol {
 	}
 	.ov-hid {
 		overflow: visible;
+		padding-left: 0;
 	}
 	.filter {
 		position: relative;

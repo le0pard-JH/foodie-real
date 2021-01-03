@@ -17,13 +17,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>3조  | 파이널</title>
+  <title>Get it Foodie!</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="<%=request.getContextPath() %>/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script> 
    
-     <!-- Css Styles -->
+   <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Css Styles -->
   <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/font-awesome.min.css" />
   <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/elegant-icons.css" />
@@ -35,10 +38,7 @@
   <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/owl.carousel.min.css" />
   <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/slicknav.min.css" />
   <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/resources/css/style.css" />
-   
-     <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-   
+  
   <%--  ===== #179. 스피너를 사용하기 위해  jquery-ui 사용하기 ===== --%>
   <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resources/jquery-ui-1.11.4.custom/jquery-ui.css" />
   <script type="text/javascript" src="<%= request.getContextPath() %>/resources/jquery-ui-1.11.4.custom/jquery-ui.js"></script>

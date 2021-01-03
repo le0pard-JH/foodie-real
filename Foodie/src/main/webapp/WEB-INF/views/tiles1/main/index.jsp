@@ -5,7 +5,7 @@
 
 <%
    String ctxPath = request.getContextPath();
-  //       /board 
+  //       /foodie 
 %>
 <head>
     <meta charset="UTF-8">
@@ -778,10 +778,6 @@ div.set-bg{
             </div>
         </div>
     </section>
-    
- 
-
-
    
     <!-- Js Plugins -->
     <script src="<%=ctxPath %>/resources/js/jquery-3.3.1.min.js"></script>
