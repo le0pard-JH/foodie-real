@@ -17,9 +17,22 @@
     <title>3조 | 파이널</title>
 
 </head>
+
 <style type="text/css">
     .top_list {
         /* == topList 스팬태그 가운데로 == */
+.top_list{
+/* == topList 스팬태그 가운데로 == */
+		position: relative;
+        bottom: 90px;
+        right:78px;
+        color:white;
+        font-size:20px;
+        font-weight:bold;
+        text-align:center; 	
+}
+.top_list2{
+/* == topList 스팬태그 가운데로 == */
         position: relative;
         bottom: 90px;
         right: 78px;
@@ -41,7 +54,12 @@
         text-align: center;
 
     }
-
+        right:78px;
+        color:white;
+        font-size:15px;
+        font-weight:bold;
+        text-align:center;    	
+}
 
 
     div.listing__item__pic set-bg {
@@ -54,6 +72,16 @@
         /* position:relative; */
         width: 380px;
     }
+div.listing__item__pic set-bg{
+	/* position:relative;
+	width:500px;
+	height:300px; */
+}
+
+div.listing__item{
+	/* position:relative; */
+	width:380px;
+}
 
 </style>
 
@@ -68,6 +96,12 @@
     });
 
 </script>
+ 
+
+
+
+</script>
+
 
 <body>
     <!-- Page Preloder -->
@@ -83,6 +117,12 @@
             <br>
 
         </ol>
+          <c:forEach var="searchList" items="${searchList}">
+      		<ol>
+      			<li style="font-size:20pt;">점포명:${searchList.name} </li>
+      			<li style="font-size:20pt;">주소:${searchList.address} </li>
+      		</ol>
+      	  </c:forEach> 
 
 
 

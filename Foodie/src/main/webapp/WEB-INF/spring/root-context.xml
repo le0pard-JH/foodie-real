@@ -11,6 +11,7 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@211.238.142.84:1521:xe" />
+		<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" /> -->
 		<property name="username" value="foodie" />
 		<property name="password" value="cclass" />
 	</bean> 
@@ -34,4 +35,6 @@
 	<!-- ==== #17. jackson 과 관련된 기능을 사용하기 위해 빈을 등록한다. ==== -->
 	<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 	
+	
+    
 </beans>

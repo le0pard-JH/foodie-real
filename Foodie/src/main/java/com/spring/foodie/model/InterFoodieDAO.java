@@ -30,8 +30,6 @@ public interface InterFoodieDAO {
 	// 시작페이지에서 메인 이미지를 보여주는 것 
 	List<String> getImgfilenameList();
 
-	// 로그인 처리하기
-	MemberVO getLoginMember(Map<String, String> paraMap);
 	int updateIdle(String userid);
 
 	// 글쓰기(파일첨부가 없는 글쓰기)
@@ -50,13 +48,11 @@ public interface InterFoodieDAO {
 	int del(Map<String, String> paraMap);
 
   ///////////////////////////////////////////////////
-	int addComment(CommentVO commentvo); // 댓글쓰기(tbl_comment 테이블에 insert) 
 	int updateCommentCount(String parentSeq); // tbl_board 테이블에 commentCount 컬럼의 값을 1증가(update)  
 	int updateMemberPoint(Map<String, String> paraMap);  // tbl_member 테이블에 point 컬럼의 값을 50증가(update) 
   ///////////////////////////////////////////////////
 
 	// 원게시글에 딸린 댓글들을 조회해오는 것
-	List<CommentVO> getCommentList(String parentSeq);
 
 	// BoardAOP 클래스에 사용하는 것으로 특정 회원에게 특정 점수만큼 포인트를 증가하기 위한 것
 	void pointPlus(Map<String, String> paraMap);
@@ -74,10 +70,8 @@ public interface InterFoodieDAO {
 	List<BoardVO> boardListSearchWithPaging(Map<String, String> paraMap);
 
 	// 원게시물에 딸린 댓글들을 페이징처리해서 조회해오기(Ajax 로 처리) 
-	List<CommentVO> getCommentListPaging(Map<String, String> paraMap);
 
 	// 원게시물에 딸린 댓글 totalPage 알아오기 (Ajax 로 처리) 
-	int getCommentTotalCount(Map<String, String> paraMap);
 
 	// tbl_board 테이블에서 groupno 컬럼의 최대값 구하기  
 	int getGroupnoMax();
@@ -86,6 +80,46 @@ public interface InterFoodieDAO {
 	int add_withFile(BoardVO boardvo);
 	
 	
+	// 가게 code에 맞는 댓글 List 가져오기
+		List<CommentVO> getCommentList(String code);
+		
+		// 댓글 추가하기
+		int addComment(CommentVO commentvo);
+		
+		// 댓글 삭제하기
+		int deleteComment(CommentVO commentvo);
+		
+		// 원게시물에 딸린 댓글들을 페이징처리해서 조회해오기(Ajax 로 처리) 
+		List<CommentVO> getCommentListPaging(Map<String, String> paraMap);
+
+		// 원게시물에 딸린 댓글 totalPage 알아오기 (Ajax 로 처리) 
+		int getCommentTotalCount(Map<String, String> paraMap);
+		
+		MemberVO emailDuplicateCheck(String email); // 이메일중복검사
+
+		MemberVO getLoginMember(Map<String, String> paraMap); // 로그인 멤버가져오기
+
+		MemberVO getkakaoLoginMember(String kakaoid); // 카카오로 로그인하기
+		   
+		void setLoginHistory(Map<String, String> paraMap); // 일반 로그인 기록하기
+
+		LoginHistoryVO getloginHistoryGap(String email); // 로그인 히스토리 가져오기.
+		
+		int registerMember(Map<String, String> paraMap); // 회원가입하기
+
+		MemberVO getUserInfo(String email); // 유저 정보 가져오기.
+
+		int likeAdd(Map<String, String> paraMap); // 댓글 좋아요 증가 
+
+		int addCommentCnt(String seq); //  원 댓글의 댓글수 증가시키기
+
+		int likeAddCnt(String seq); // 좋아요 숫자 증가시키기
+
+		int delLike(Map<String, String> paraMap); // like 삭제하기
+
+		int likeDelCnt(String seq); // 좋아요 숫자 빼기
+
+		int duplicateCheckLike(Map<String, String> paraMap); // 좋아요 중복검사하기
 }
 
 

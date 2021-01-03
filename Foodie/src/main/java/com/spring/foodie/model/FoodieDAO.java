@@ -242,12 +242,6 @@ public class FoodieDAO implements InterFoodieDAO {
 		}
 
 		@Override
-		public MemberVO getLoginMember(Map<String, String> paraMap) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
 		public int updateIdle(String userid) {
 			// TODO Auto-generated method stub
 			return 0;
@@ -264,7 +258,109 @@ public class FoodieDAO implements InterFoodieDAO {
 			// TODO Auto-generated method stub
 			return 0;
 		}
+
+	@Override
+	public int deleteComment(CommentVO commentvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	   public MemberVO emailDuplicateCheck(String email) {
+
+	      MemberVO mvo = sqlsession.selectOne("foodie.emailDuplicateCheck", email);
+
+	      return mvo;
+	   }
+
+	   // === #46. 로그인 처리하기 === //
+	   @Override
+	   public MemberVO getLoginMember(Map<String, String> paraMap) {
+
+	      MemberVO loginuser = sqlsession.selectOne("foodie.getLoginMember", paraMap);
+	      
+	      return loginuser;
+	   }
+	   
+	   // 카카오로 로그인 하기
+	   @Override
+	   public MemberVO getkakaoLoginMember(String kakaoid) {
+	      MemberVO loginuser = sqlsession.selectOne("foodie.getkakaoLoginMember", kakaoid);
+	      return loginuser;
+	   }
+	   
+	   
+	    // https://all-record.tistory.com/168    IPV6  ==> IPV4
+	    // 로그인 히스토리 기록하기
+	   @Override
+	   public void setLoginHistory(Map<String, String> paraMap) {
+	      
+	      sqlsession.insert("foodie.setLoginHistory", paraMap);
+	      
+	   }
+	   
+	   // 
+	   @Override
+	   public LoginHistoryVO getloginHistoryGap(String email) {
+	      LoginHistoryVO historyvo = sqlsession.selectOne("foodie.getloginHistoryGap", email);
+	      return historyvo;
+	   }
+
+	   @Override
+	   public int registerMember(Map<String, String> paraMap) {
+	      int n = sqlsession.insert("foodie.registerMember", paraMap);
+	      
+	      return n;
+	   }
+
+	   @Override
+	   public MemberVO getUserInfo(String email) {
+	      
+	      MemberVO mvo=sqlsession.selectOne("foodie.getUserInfo", email);
+	      return mvo;
+	      
+	   }
+
+	@Override
+	public int likeAdd(Map<String, String> paraMap) {
+		
+		int n = sqlsession.insert("foodie.likeAdd", paraMap);
+		return n;
+	}
 	
+
+	
+	
+	@Override
+	public int addCommentCnt(String parentSeq) {
+		
+		int n = sqlsession.update("foodie.addCommentCnt", parentSeq);
+		return n;
+	}
+
+	@Override
+	public int likeAddCnt(String seq) {
+		int n = sqlsession.update("foodie.likeAddCnt", seq);
+		return n;
+	}
+
+	@Override
+	public int delLike(Map<String, String> paraMap) {
+		int n = sqlsession.delete("foodie.delLike", paraMap);
+		return n;
+	}
+
+	@Override
+	public int likeDelCnt(String seq) {
+		int n = sqlsession.update("foodie.likeDelCnt", seq);
+		return n;
+	}
+
+	@Override
+	public int duplicateCheckLike(Map<String, String> paraMap) {
+		int n = sqlsession.selectOne("foodie.duplicateCheckLike", paraMap);
+		return n;
+	}
 	
 	
 }

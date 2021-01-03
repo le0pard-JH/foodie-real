@@ -229,7 +229,7 @@ public class FoodieService implements InterFoodieService {
 		
 		if(m==1) {
 			Map<String, String> paraMap = new HashMap<>();
-			paraMap.put("userid", commentvo.getFk_userid());
+			paraMap.put("userid", commentvo.getFk_email());
 			paraMap.put("point", "50");
 			
 			result = dao.updateMemberPoint(paraMap); // tbl_member 테이블에 point 컬럼의 값을 50증가(update)
@@ -238,15 +238,6 @@ public class FoodieService implements InterFoodieService {
 	
 		return result;
 	}
-
-
-	// === #91. 원게시글에 딸린 댓글들을 조회해오는 것 === //
-	@Override
-	public List<CommentVO> getCommentList(String parentSeq) {
-		List<CommentVO> commentList = dao.getCommentList(parentSeq);
-		return commentList;
-	}
-
 
 	// === #98. BoardAOP 클래스에 사용하는 것으로 특정 회원에게 특정 점수만큼 포인트를 증가하기 위한 것
 	@Override
@@ -323,12 +314,122 @@ public class FoodieService implements InterFoodieService {
 		int n = dao.add_withFile(boardvo); // 첨부파일이 있는 경우 
 		return n;		
 	}
+	
+	@Override
+	public List<CommentVO> getCommentList(String code) {
+
+		List<CommentVO> commentList = dao.getCommentList(code);
+		return commentList;
+	}
+
+	
+	// === #42. 로그인 처리하기 === // 
+    @Override
+    public MemberVO getLoginMember(Map<String, String> paraMap) {
+       
+       MemberVO loginuser = dao.getLoginMember(paraMap);
+       
+       /*
+        * if(loginuser != null && loginuser.getPwdchangegap() >= 3) { // 마지막으로 암호를 변경한
+        * 날짜가 현재시각으로 부터 3개월이 지났으면 loginuser.setRequirePwdChange(true); // 로그인시 암호를
+        * 변경해라는 alert 를 띄우도록 한다. }
+        * 
+        * if(loginuser != null && loginuser.getLastlogingap() >= 12 ) { // 마지막으로 로그인 한
+        * 날짜시간이 현재시각으로 부터 1년이 지났으면 휴면으로 지정 loginuser.setIdle(1);
+        * 
+        * // === tbl_member 테이블의 idle 컬럼의 값을 1 로 변경 하기 === // int n =
+        * dao.updateIdle(paraMap.get("userid")); }
+        */
+       
+       /*
+        * if(loginuser != null) { String email = ""; try { email =
+        * aes.decrypt(loginuser.getEmail()); } catch (UnsupportedEncodingException |
+        * GeneralSecurityException e) { e.printStackTrace(); }
+        * loginuser.setEmail(email); }
+        */
+       
+       return loginuser;
+    }
+    
+    // 카카오로 로그인하기
+    @Override
+    public MemberVO getkakaoLoginMember(String kakaoid) {
+       
+       MemberVO loginuser = dao.getkakaoLoginMember(kakaoid);
+       return loginuser;
+    }
+    
+    // 로그인 히스토리 저장하기
+    @Override
+    public void setLoginHistory(Map<String, String> paraMap) {
+       
+       dao.setLoginHistory(paraMap);
+    }
+
+    @Override
+    public LoginHistoryVO getloginHistoryGap(String email) {
+       
+       LoginHistoryVO historyvo = dao.getloginHistoryGap(email);
+       return historyvo;
+    }
+
+    @Override
+    public int registerMember(Map<String, String> paraMap)  {
+       
+       int n = dao.registerMember(paraMap);
+       return n;
+    }
+    
+    
+    @Override
+    public MemberVO getUserInfo(String email) {
+       MemberVO mvo = dao.getUserInfo(email);
+       return mvo;
+    }
 
 	@Override
-	public MemberVO getLoginMember(Map<String, String> paraMap) {
+	public MemberVO emailDuplicateCheck(String email) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	
+	@Override
+	public int likeAdd(Map<String, String> paraMap) {
+		
+		int n = dao.likeAdd(paraMap);
+		return n;
+		
+	}
+
+	@Override
+	public int addCommentCnt(String parentSeq) {
+		int n = dao.addCommentCnt(parentSeq);
+		return n;
+	}
+
+	@Override
+	public int likeAddCnt(String seq) {
+		int n = dao.likeAddCnt(seq);
+		
+		return n;
+	}
+
+	@Override
+	public int delLike(Map<String, String> paraMap) {
+		
+		int n = dao.delLike(paraMap);
+		return n;
+	}
+
+	@Override
+	public int likeDelCnt(String seq) {
+		int n = dao.likeDelCnt(seq);
+		return n;
+	}
+
+	@Override
+	public int duplicateCheckLike(Map<String, String> paraMap) {
+		int n = dao.duplicateCheckLike(paraMap);
+		return n;
+	}
 }

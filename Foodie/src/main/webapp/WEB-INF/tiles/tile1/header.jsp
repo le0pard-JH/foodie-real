@@ -30,27 +30,45 @@
 
 <script type="text/javascript">
 
+	
 	$(document).ready(function(){
+		$("input#searchWord").focus();
+		$("input#searchWord").keyup(function(event){
+			if(event.keyCode == 13) {
+				// 엔터를 했을 경우 
+				goSearch();
+			}
+		/* $("input#searchWord").click(function(){
+				goSearch();
+			}); */
+		});
 		
+<<<<<<< HEAD
 	});
 
+=======
+		
+		
+	});// end of $(document).ready(function(){})-------------------------------------------------- 
+	
+	 
+	
+>>>>>>> refs/remotes/origin/search_try01
 function goSearch() {
-
-		if( $("input#searchWord").val() == "" ){
+	
+		if( $("input#searchWord").val() == "" || $("input#searchWord").val() == null){
 			alert('검색어를 입력하세요.');
 			return;
 		}
 	
-		$("input#searchWord").keyup(function(event){
-			if(event.keyCode == 13) { // 엔터를 했을 경우
-				goSearch(); //검색실행
-			}
-		});
-	
+		
+	 
 	var frm = document.searchFrm;
 	frm.method = "GET";
-	frm.action = "<%= request.getContextPath()%>/list.food";
+	frm.action = "<%= request.getContextPath()%>/map/data.food";
 	frm.submit();
+	 
+	
 }// end of function goSearch() {}-----------------------
 
 </script>
@@ -62,7 +80,7 @@ function goSearch() {
                 <div class="col-lg-3 col-md-3">
                 <!-- 로고 -->
                     <div class="header__logo">
-                        <a href="./index.food"><img src="<%=ctxPath %>/resources/images/foodie_logo.png" style="width:200px; height:100px;"alt=""></a>
+                        <a href="<%= request.getContextPath() %>/index.food"><img src="<%= request.getContextPath() %>/resources/images/foodie_logo.png" style="width:200px; height:100px;"alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-9">
@@ -70,9 +88,15 @@ function goSearch() {
                     <!-- 헤더 기능 버튼 -->
                         <nav class="header__menu mobile-menu">
                             <ul>
+<<<<<<< HEAD
                                 <li class="active"><a href="<%=ctxPath %>/index.food">Home</a></li>
                                 <li><a href="<%=ctxPath %>/storeBoard/storeMain.food">식당게시판</a></li>
                                 <li><a href="<%=ctxPath %>/storeBoard/userBoardMain.food">유저게시판</a></li>
+=======
+                                <li class="active"><a href="<%= request.getContextPath() %>/index.food">Home</a></li>
+                                <li><a href="./listing.html">식당게시판</a></li>
+                                <li><a href="#">유저게시판</a></li>
+>>>>>>> refs/remotes/origin/search_try01
                             </ul>
                         </nav>
                         <!-- 유저모양 로그인 버튼 -->
@@ -99,10 +123,10 @@ function goSearch() {
                         </div>
                         <div class="hero__search__form">
                             <form name="searchFrm">
-                                <div class="select__option">
+                               <!--  <div class="select__option">
                                     <select name="searchType" id="searchType">
-                                        <option selected>지역</option> <!-- 경기도~제주도 -->
-                                        <option value="">서울특별시</option>                                       
+                                        <option value="">지역</option> 
+                                       <option value="">서울특별시</option>                                       
                                         <option value="">인천광역시</option>
                                         <option value="">대전광역시</option>
                                         <option value="">대구광역시</option>
@@ -125,16 +149,20 @@ function goSearch() {
                                 <div class="select__option">
                                     <select name="searchType2" id="searchType2">
                                         <option selected>세부지역</option>
-                                        <option value="">세부지역</option>
+                                    <option value="">세부지역</option>
                                         <option value="">세부지역</option>
                                         <option value="">세부지역</option>
                                         <option value="">세부지역</option>
                                         <option value="">세부지역</option>
                                     </select>
-                                </div>
-                                <input type="text" name="searchWord" id="searchWord" placeholder="검색어를 입력하세요.">
+                                </div>-->
+                                <input type="text" name="searchWord" id="searchWord" placeholder="검색어를 입력하세요." style="width:930px;">
                                 <button type="button" id="btnSearch" onclick="goSearch()">검색</button>
                             </form>
+<<<<<<< HEAD
+=======
+                            <!-- <div id="displayList" style="border:solid 0px gray; float:right; border-top:0px; width:600px; height:150px; margin-left:70px; margin-top:-1px; overflow:auto;"></div> -->
+>>>>>>> refs/remotes/origin/search_try01
                             
                         </div>
                     </div>
