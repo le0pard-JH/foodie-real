@@ -8,29 +8,68 @@
 %>
 
 <style>
-	.store {
-		display:inline-block;
-		width: 50%;
+	div.store_text_top {
+		text-align: center;
+		height: 200px;
+		background-color: #E2E2E2;
 		padding-top: 50px;
-		border-bottom: 1px solid gray;
 	}
 	
-	.store_item_img {
+	div#hotPlace {
+		font-size: xx-large;
+		font-weight: bold;
+	}
+	
+	div#hotPlaceInfo {
+		font-size: medium;
+		color: gray;
+		font-weight: bold;
+	}
+	
+	ul#placesList {
+		text-align: center;
+		list-style-type: none;
+	}
+	
+	div.info {
+		margin-bottom: 30px;
+		display: inline-block;
+		text-align: left;
+		margin-left: 10px;
+	}
+	
+	div.storeImg {
+		display: inline-block;
+	}
+	
+	div.storeImg > img {
 		width: 238px;
 		height: 238px;
+		margin-top: 10px;
 	}
+	
+	li.item {
+		margin: 0 auto;
+		padding-bottom: 10px;
+		border-bottom: 1px solid black;
+		width: 30%;
+	}
+
+	
 </style>
-
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=8a283a84534cab3af87f95bcee93c9a4&libraries=services"></script>
-
 <script type="text/javascript">
 
 	// 장소 검색 객체를 생성합니다
 	var ps = new kakao.maps.services.Places();
 	
 	$(document).ready(function() {
+		
 		// 키워드로 장소를 검색합니다
 		searchPlaces();
+		
+		$("div#pagination").hide();
+		
 	});
 
 	function proc(foodie) {
@@ -51,6 +90,8 @@
  		
 		var imgArr = [];
 		
+		var pageInfo = null;
+		
     	 $.each(foodie, function(index, item) {
     		
     		photo = item.photo;
@@ -70,79 +111,79 @@
 		});
     	 
     	 for(var i=0; i<imgArr.length; i++) {
-    		 $("div.storeImg").eq(i).append("<img src="+imgArr[i]+" />");
+    		 
+    		var imglength = $("#placesList > li:nth-child("+(i+1)+") > div.storeImg > img").length;
+ 			
+ 			if(imglength < 1) {
+	    		$("div.storeImg").eq(i).append("<img src="+imgArr[i]+" />");
+ 			}
     	 }
 	}
-
+	
+	var pagenum = 1;
+	
 	// 스크롤 이벤트 (최하단 이동시 더보기 기능)
 	$(window).scroll(function() {
 		var scrolltop = $(document).scrollTop();
 		var height = $(document).height();
 		var height_win = $(window).height();
-		if (Math.round($(window).scrollTop()) == $(document).height()
-				- $(window).height()) {
-			// moreList();
+		if (Math.round($(window).scrollTop()) == $(document).height() - $(window).height()) {
+			//console.log(pageInfo);
+			
+			var divlength = $("div.storeImg").length;
+			
+			pagenum = pagenum + 1;
+			moreList(pageInfo, pagenum, divlength);
 		}
 	});
+	
+	function moreList(pageInfo, pagenum, divlength) {
+		
+		if(pagenum <= pageInfo.last) {
+			pageInfo.gotoPage(pagenum);
+		}
+		else {
+			//$("#placesList").remove("<a class='MOVE_TOP_BTN' href='#'>맨위로</a>");
+			
+			var buttonCount = $("a.MOVE_TOP_BTN").length;
+			
+			if(buttonCount < 1) {
+				$("#placesList").append("<a class='MOVE_TOP_BTN' href='#'>맨위로</a>");
+			}
+		}
+		
+	}
+	
+	$("a.MOVE_TOP_BTN").click(function() {
+        $('html, body').animate({
+            scrollTop : 0
+        }, 400);
+        return false;
+    });
+
 
 	// 리스트의 가게를 클릭했을경우 해당 가게 상세페이지로 이동하는 함수
-	function storeClick() {
-		$("div.store_item").click(function() {
-			var index = $("div.store_item").index(this);
+	function storeClick(){
+		$("li.item").click(function() {
+			var index = $("li.item").index(this);
 
 			var code = $("input.code").eq(index).val();
-
+			
+			var length = $("li.item").length;
+			
+			//console.log("length ==>" + length);
+			
+			//console.log("code ==>" + code);
+				
 			var frm = document.storeListForm;
 			frm.method = "GET";
 			frm.action = "<%=ctxPath%>/storeBoard/storeDetail.food?code="+code;
 			frm.submit();
 		});
-	 }
-	   
-	// 스크롤 최하단으로 이동시 가게정보를 추가로 가져오는 메서드
-	 <%-- function moreList() {
-		var scrollCtrl = $("#scrollCtrl").val();
-		var hotPlace = "${hotPlace}";
-		var hotPlaceInfo = "${hotPlaceInfo}";
-		
-		var nscrollCtrl = Number(scrollCtrl) + 1;
-		
-		var html = "";
-		
-		$("#scrollCtrl").val(nscrollCtrl);
-		
-		var urlContent = {"hotPlace":hotPlace, "hotPlaceInfo":hotPlaceInfo, "nscrollCtrl":nscrollCtrl};
-		
-		$.ajax({
-				url:"<%=ctxPath%>/storeBoard/moreView.food",
-				data: urlContent,
-				dataType:"JSON",
-				success:function(json){
-					for(var i=0; i<json.length; i++) {
-						html += "<div class='store nice-scroll' align='center'>" +
-					        	 	"<div class='store__list'>" +
-					            		"<div class='store_item' style='cursor: pointer;' onclick='storeClick()'>" +
-						               	 	"<div class='store_item_img' style='display: inline-block;'>" +
-						                    "<img src='<%=ctxPath%>/resources/images/레노보.png'>" +
-						                	"</div>" +
-						                	"<div class='store__item__text' style='display: inline-block;'>" +
-						                    "<div><h4>" + json[i].RNO +". "+ json[i].NAME + "</h4></div>" +
-						                    "<div><h5>" + json[i].ADDRESS + "</h5></div>" +
-						                    "<div><h5>" + json[i].CALL +"</h5></div>" +
-						                    "<input type='text' value=" + json[i].CODE +" name='code' class='code' />" +
-						                    "<div align='right'>" + json[i].NAME  + " 더보기 </div>" +
-								            "</div>" +
-							            "</div>" +
-						        	"</div>" +
-					    		"</div></br>";
-					}
-					$("div#storeList").append(html);
-				},
-				error: function(request, status, error){
-					alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
-			 	}
-			});
-		} --%>
+	}
+	
+	
+	
 	
 	// 키워드 검색을 요청하는 함수입니다
      function searchPlaces() {
@@ -152,30 +193,36 @@
          // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
          ps.keywordSearch(keyword, placesSearchCB);
      }
-
+	
      // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
      function placesSearchCB(data, status, pagination) {
          if (status === kakao.maps.services.Status.OK) {
-             displayPlaces(data);
+             
+        	 displayPlaces(data);
+        	 
+        	 displayPagination(pagination);
+        	 
+        	 pageInfo = pagination;
+        	 
          } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-
+        	 
              alert('검색 결과가 존재하지 않습니다.');
+             
              return;
-
          } else if (status === kakao.maps.services.Status.ERROR) {
 
              alert('검색 결과 중 오류가 발생했습니다.');
+             
              return;
-
          }
      }
-
+     
      // 검색 결과 목록과 마커를 표출하는 함수입니다
      function displayPlaces(places) {
-         var listEl = document.getElementById('placesList'),
-             menuEl = document.getElementById('menu_wrap'),
-             fragment = document.createDocumentFragment(),
-             listStr = '';
+    	 var listEl = document.getElementById('placesList'),
+         menuEl = document.getElementById('menu_wrap'),
+         fragment = document.createDocumentFragment(),
+         listStr = '';
 	
          for (var i = 0; i < places.length; i++) {
 
@@ -188,31 +235,79 @@
          listEl.appendChild(fragment);
          
          getImage();
+
+     }
+     
+  // 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
+     function displayPagination(pagination) {
+         var paginationEl = document.getElementById('pagination'),
+             fragment = document.createDocumentFragment(),
+             i;
+
+         // 기존에 추가된 페이지번호를 삭제합니다
+         while (paginationEl.hasChildNodes()) {
+             paginationEl.removeChild(paginationEl.lastChild);
+         }
+
+         for (i = 1; i <= pagination.last; i++) {
+             var el = document.createElement('a');
+             el.href = "#";
+             el.innerHTML = i;
+
+             if (i === pagination.current) {
+                 el.className = 'on';
+             } else {
+                 el.onclick = (function(i) {
+                     return function() {
+                         pagination.gotoPage(i);
+                     }
+                 })(i);
+             }
+
+             fragment.appendChild(el);
+         }
+         paginationEl.appendChild(fragment);
      }
 
      // 검색결과 항목을 Element로 반환하는 함수입니다
      function getListItem(index, places) {
-
          var el = document.createElement('li'),
              itemStr = '<span class="markerbg marker_' + (index + 1) + '"></span>' +
              '<div class="storeImg"></div>' +
              '<div class="info">' +
-             '   <h5>'+ places.place_name +'</h5>' +
+             '   <h4 style="width:250px; margin-bottom:10px;">'+ places.place_name +'</h4>' +
              '   <input type="hidden" value='+places.id+' class="code">';
 
-         if (places.road_address_name) {
-             itemStr += '    <span>' + places.road_address_name + '</span>' +
-                 '   <span class="jibun gray">' + places.address_name + '</span>';
+         if (places.road_address_name != null) {
+             itemStr += '    <h5 margin-bottom:10px;>' + places.road_address_name + '</h5>';
+                 // '   <span class="jibun gray">' + places.address_name + '</span><br />';
          } else {
              itemStr += '    <span>' + places.address_name + '</span>';
          }
 
-         itemStr += '  <span class="tel">' + places.phone + '</span>' +
+         itemStr += '  <h5>' + places.phone + '</h5>' +
+             '<div>'+places.place_name +' 더보기 </div>' + 
              '</div>';
-
+		
          el.innerHTML = itemStr;
          el.className = 'item';
+		 el.onclick = function() {
+			var index = $("li.item").index(this);
 
+			var code = $("input.code").eq(index).val();
+					
+			var length = $("li.item").length;
+					
+			console.log("length ==>" + length);
+					
+			console.log("code ==>" + code);
+						
+			var frm = document.storeClick;
+			frm.method = "GET";
+			frm.action = "<%=ctxPath%>/storeBoard/storeDetail.food?code="+code;
+			frm.submit();
+		 }
+		 
          return el;
      }
      
@@ -242,7 +337,6 @@
 	}
 </script>
 
-<form name="storeListForm">
 	<div class="ov-hid">
 		<!-- Page Preloder -->
 		<div id="preloder">
@@ -253,18 +347,20 @@
 			<div id="hotPlace">${hotPlace}</div>
 			<div id="hotPlaceInfo">${hotPlaceInfo}</div>
 		</div>
-
+		
+		<hr>
+		
+		<form name="storeClick">
 		<div id="menu_wrap" class="bg_white">
-			<input type="hidden" value="${Place}" id="keyword">
-			<hr>
 			<ul id="placesList"></ul>
+			<div id="pagination"></div>
 		</div>
+		</form>
 	</div>
 	
 	
 	<input type="hidden" value="${scrollCtrl}" id="scrollCtrl" />
  <!-- Js Plugins -->
-</form> 
     <script src="<%=ctxPath %>/resources/js/jquery-3.3.1.min.js"></script>
     <script src="<%=ctxPath %>/resources/js/bootstrap.min.js"></script>
     <script src="<%=ctxPath %>/resources/js/jquery.nice-select.min.js"></script>

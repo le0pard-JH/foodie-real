@@ -14,7 +14,7 @@ public class JsonReader {
 
     // myURL = "https://place.map.kakao.com/main/v/25406298";
 
-    System.out.println("Requeted URL:" + myURL);
+    // System.out.println("Requeted URL:" + myURL);
     StringBuilder sb = new StringBuilder();
     URLConnection urlConn = null;
     InputStreamReader in = null;

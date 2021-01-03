@@ -72,7 +72,7 @@ function goSearch() {
                             <ul>
                                 <li class="active"><a href="<%=ctxPath %>/index.food">Home</a></li>
                                 <li><a href="<%=ctxPath %>/storeBoard/storeMain.food">식당게시판</a></li>
-                                <li><a href="#">유저게시판</a></li>
+                                <li><a href="<%=ctxPath %>/storeBoard/userBoardMain.food">유저게시판</a></li>
                             </ul>
                         </nav>
                         <!-- 유저모양 로그인 버튼 -->

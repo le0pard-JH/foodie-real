@@ -36,7 +36,7 @@
                 <div class="col-lg-3 col-md-3">
                 <!-- 로고 -->
                     <div class="header__logo">
-                        <a href="./index.html"><img src="<%=ctxPath %>/resources/img/Logo.png" alt=""></a>
+                        <a href="<%=ctxPath%>/index.food"><img src="<%=ctxPath %>/resources/img/Logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-9">
