@@ -384,7 +384,15 @@
          <version>2.2</version>
       </dependency>
       
-      <!-- 지훈 12-17 추가 끝-->       
+      <!-- 지훈 12-17 추가 끝-->
+      
+    <dependency>
+    	<groupId>com.googlecode.json-simple</groupId>
+    	<artifactId>json-simple</artifactId>
+    	<version>1.1.1</version>
+	</dependency>
+      
+             
    </dependencies>
     <build>
         <plugins>

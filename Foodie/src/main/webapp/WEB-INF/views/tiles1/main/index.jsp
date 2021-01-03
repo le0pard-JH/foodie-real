@@ -7,17 +7,15 @@
    String ctxPath = request.getContextPath();
   //       /board 
 %>
-
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Directing Template">
     <meta name="keywords" content="Directing, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>3조 | 파이널</title>
-    
-</head>
+    <title>Get it Foodie!</title>
 
+</head>
 <style type="text/css">
 
 body{
@@ -66,42 +64,26 @@ div.set-bg{
 
    $(document).ready(function() {
       
-	   // 맛집 탭 내부의 지역핫플레이스를 누를 경우 이벤트가 일어난 버튼의 정보를 Controller로 전송하는 기능
       $("div.listing__item").click(function() {
          
          var index = $("div.listing__item").index(this);
          
          var hotPlace = $("span.top_list").eq(index).text();
          
-         var hotPlaceInfo = $("p.top_list2").eq(index).text();
+         var hotPlaceInfo = $("span.top_list2").eq(index).text();
          
-         location.href="<%=ctxPath %>/storeBoard/storeMain.food?hotPlace="+hotPlace+"&hotPlaceInfo="+hotPlaceInfo+"&scrollCtrl=1";
+         location.href="<%=ctxPath %>/storeBoard/storeMain.food?hotPlace="+hotPlace+"hotPlaceInfo="+hotPlaceInfo;
       });
       
    });
    
 </script>
-
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
 
-    <!-- Categories Section Begin -->
-    <!-- <section class="categories spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>Most Popular Categories</h2>
-                        <p>Travelocity empowers travelers who are giving back on their trips in ways big and small</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-    <!-- Categories Section End -->
 
     <!-- Most Search Section Begin -->
     <section class="most-search spad">
@@ -775,9 +757,9 @@ div.set-bg{
                         <div class="testimonial__item" data-hash="review-3">
                             <p>"제가 먹은것중에 제일 맛있어요"</p>
                             <div class="testimonial__item__author">
-                                <a href="#review-2"><<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/testimonial/author-2.png" alt=""></a>
-                                <a href="#review-3" class="active"><<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/testimonial/author-3.png" alt=""></a>
-                                <a href="#review-1"><<%=ctxPath %>/resources/img src="<%=ctxPath %>/resources/img/testimonial/author-1.png" alt=""></a>
+                                <a href="#review-2"><img src="<%=ctxPath %>/resources/img/testimonial/author-2.png" alt=""></a>
+                                <a href="#review-3" class="active"><img src="<%=ctxPath %>/resources/img/testimonial/author-3.png" alt=""></a>
+                                <a href="#review-1"><img src="<%=ctxPath %>/resources/img/testimonial/author-1.png" alt=""></a>
                             </div>
                             <div class="testimonial__item__author__text">
                                 <h5>홍승의 -</h5>
@@ -813,3 +795,6 @@ div.set-bg{
     <script src="<%=ctxPath %>/resources/js/owl.carousel.min.js"></script>
     <script src="<%=ctxPath %>/resources/js/main.js"></script>
 </body>
+
+
+
