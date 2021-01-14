@@ -22,42 +22,6 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-
-
-	<!-- === #19. 엑셀파일다운로드를 위해  BeanNameViewResolver 추가하기 === -->
-    <!-- 스프링 프레임워크(Spring Framework)에서 JSP가 아닌 컨트롤러를 호출하여 파일을 다운로드 하려면 다음과 같은 단계를 거쳐야 한다. 
-	     BeanNameViewResolver 뷰 리졸버를 추가한 후 파일 다운로드를 처리해줄 빈을 등록한다.
-	         쉽게 생각해서 파일 다운로드 처리를 해주는 view 페이지 라고 생각하면 된다. -->
-<!--  	 
-	<beans:bean id="excelDownloadView" class="com.spring.excel.ExcelDownloadView"/>
-	<beans:bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
-        <beans:property name="order" value="0"/>
-    </beans:bean>
--->    
-	<!-- BeanNameViewResolver 컨트롤러에서 리턴 받은 뷰의 이름과 빈에 등록되어 있는 id의 값이 같은것을 찾아서 빈을 실행시킬 때 쓰인다.
-		 주로 커스텀하게 만들어진 View 클래스를 뷰로 사용해야 하는 경우에 사용한다. 
-	
-	        예를 들어 
-	        컨트롤러에서 뷰의 이름을 excelDownloadView 으로 주면 (즉, 리턴만 excelDownloadView 로 주면) 
-	     bean 객체의 id가 excelDownloadView 인것을 찾는다.
-
-		 @RequestMapping(value="/testExcel.action")
-		 public String testExcel() {
-		    return "excelDownloadView";
-		 }
-
-		 <beans:bean id="excelDownloadView" class="com.spring.excel.ExcelDownloadView"/>
-                그리하여 com.spring.excel.ExcelDownloadView 클래스가 실행된다.	 
-                
-                컨트롤러에서 view단 매핑시 jsp 파일로 매핑되지 않고, 해당 객체로 바로 매핑해주기 위해서는 
-		 servlet-context.xml 에서 BeanNameViewResolver 를 빈즈로 등록해주어야 한다.
-		  여기서 중요한것은 BeanNameViewResolver 빈즈의 순서가 InternalResourceViewResolver 보다 우선 이어야한다는 것이다.
-		
-		 InternalResourceViewResolver가 BeanNameViewResolver 보다 더 우선순위를 갖으면 엑셀다운로드 작업을 진행하지 않고 
-		  해당 매핑이름에 .jsp를 달고 view를 찾게되기 때문이다.
-		 (ex : excelDownloadView.jsp를 찾느게 아니라 com.spring.excel.ExcelDownloadView 클래스파일의 실행이 필요한것이다.)
-	-->
-
 	<!-- ======= #20. 실행시 모든 페이지에 기본틀이 되어지는 틀을 배치하기 위한 템플릿 프레임워크인 TilesViewResolver 를 사용하기 위해 빈으로 등록한다. ======= -->
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <beans:property name="definitions">
@@ -71,6 +35,7 @@
         <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
         <beans:property name="order" value="1"/>
     </beans:bean>
+    
     <!-- ===> Resolver의 사용우선순위를 TilesViewResolver 를 1로 한다. 
 	          <beans:property name="order" value="1"/> 을 주면 된다. -->
 
@@ -108,6 +73,7 @@
         <beans:property name="defaultEncoding" value="utf-8" />
 		<beans:property name="maxUploadSize" value="10485760" />
 	</beans:bean> 
+	
 	<!-- 
 		== CommonsMultipartResolver를 이용한 파일업로드 == 
 		     1. CommonsMultipartResolver 빈을 이용하여 파일 업로드를 처리할 수 있다.

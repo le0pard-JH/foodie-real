@@ -29,8 +29,13 @@
 	//serverName : http://192.168.50.65:9090 
 %>
 
+<style>
+	
+	
+</style>
+
  <!-- Header Section Begin -->
-    <header class="header--normal">
+    <header class="header">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-md-3">
@@ -40,37 +45,34 @@
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-9">
+                
+                
                     <div class="header__nav">
                     <!-- 헤더 기능 버튼 -->
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="<%=ctxPath %>/index.food">Home</a></li>
-                                <li><a href="<%=ctxPath %>/storeBoard/storeMain.food">식당게시판</a></li>
+                                <li class="active"><a href="<%=ctxPath %>/index.foodie">Home</a></li>
+                                <li><a href="./listing.html">식당게시판</a></li>
                                 <li><a href="#">유저게시판</a></li>
+                                <c:if test="${empty sessionScope.loginuser}"> 
+                        <li><a href="<%=ctxPath %>/login.food">로그인</a></li>
+                        </c:if>
+                        <c:if test="${not empty sessionScope.loginuser}"> 
+                        <li><a href="<%=ctxPath %>/logout.food">로그아웃</a></li>
+                        </c:if>
                             </ul>
                         </nav>
                         <!-- 유저모양 로그인 버튼 -->
                         <div class="header__menu__right">
-                            <a href="#" class="login-btn"><i class="fa fa-user"></i></a>
+                            <a href="<%=ctxPath %>/login.food" class="login-btn"><i class="fa fa-user"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>
-    </header>
-    
-    <!-- 검색 기능 및 메인화면 로딩시 출력문장 -->
-    <section class="hero set-bg" data-setbg="<%=ctxPath %>/resources/img/hero/hero-bg.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="hero__text">
-                    
-                    <!-- 머릿말 -->
-                        <div class="section-title">
-                            <h2 style="margin-top: 20px;">솔직한 리뷰, 믿을 수 있는 평점! <br>Foodie</h2>
-                        </div>
+        
+        
                         <div class="hero__search__form">
                             <form action="#">
                                 <div class="select__option">
@@ -87,13 +89,12 @@
                                 <button type="submit">검색</button>
                             </form>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Header Section End -->
+    </header>
     
+
+              
+    
+
  <!-- Js Plugins -->
     <script src="<%=ctxPath %>/resources/js/jquery-3.3.1.min.js"></script>
     <script src="<%=ctxPath %>/resources/js/bootstrap.min.js"></script>

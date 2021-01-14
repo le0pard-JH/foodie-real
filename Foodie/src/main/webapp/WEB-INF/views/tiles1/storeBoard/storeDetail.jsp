@@ -58,7 +58,52 @@
 			margin-left: 50%;
 		}
 
-	
+		div.listing__details__rating {
+			display: flex;
+			align-content: center;
+			
+			
+		}
+		
+		div.listing__details__rating__overall {
+			margin-right: 0px;
+			float: none;
+			width: 30%;
+			
+		}
+		
+		div.listing__details__rating__bar {
+			
+			width: 70%;
+			font-weight: 700;
+		}
+		
+		h2 {
+			margin-top: 10pt;
+		}
+		
+		.fa-star:before {
+			margin-right: 2px;
+			font-size: 12pt;
+		}
+		
+		div.addcoment {
+			display: flex;
+			flex-direction: column;
+			width: 15%;
+			align-items: center; 
+		}
+		
+		.listing__details__comment__item__rating {
+			align-items: center; 
+		}
+		
+		.listing__details__rating {
+			margin-bottom: 0px;
+		}
+		
+		
+		
 	</style>
  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=adf2708493f00cbb2f18296dc2c60b88"></script>	
  <script type="text/javascript">
@@ -149,6 +194,7 @@
  	    
  		// 댓글을 더보기 위하여 "더 보기" 버튼 클릭액션 이벤트 
 		$("button#btnMoreComment").click(function(){
+			
 			if($(this).text() == "처음으로") {
 				
 				$("div#commentView").empty();
@@ -172,6 +218,9 @@
  		likestroechecked(); // 좋아요 체크
  		
  		
+ 		
+ 		
+ 		
  		// 지도를 담을 영역의 DOM 레퍼런스 
         var mapContainer = document.getElementById('map');
         
@@ -181,17 +230,9 @@
             level: 4 // 지도의 레벨(확대, 축소 정도). 숫자가 적을수록 확대된다. 4가 적당함.
         };
  
-          
         // 지도 생성 및 생성된 지도객체 리턴
         var mapobj = new kakao.maps.Map(mapContainer, options);
-        
-        // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성함.    
-        var mapTypeControl = new kakao.maps.MapTypeControl();
-        
-        // 지도 타입 컨트롤을 지도에 표시함.
-        // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미함.   
-        mapobj.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-        
+         
         // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성함.   
         var zoomControl = new kakao.maps.ZoomControl();
         
@@ -199,41 +240,45 @@
         // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 RIGHT는 오른쪽을 의미함.    
         mapobj.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
         
-        if(navigator.geolocation) {
-           // HTML5의 geolocation 으로 사용할 수 있는지 확인한다.
-           
-           // GeoLocation을 이용해서 웹페이지에 접속한 사용자의 현재 위치를 확인하여 그 위치(위도,경도)를 지도의 중앙에 오도록 한다.
-           navigator.geolocation.getCurrentPosition(function(position) { 
-              
-              var latitude = position.coords.latitude;   // 현위치의 위도
-              var longitude = position.coords.longitude; // 현위치의 경도
-           
-              // 마커가 표시될 위치를 geolocation으로 얻어온 현위치의 위.경도 좌표로 한다   
-              // 저기 안에다가 꽂아주면 위치가 알아서뜸
-              /* var locPosition = new kakao.maps.LatLng(37.57777094158683, 126.97679253697846); */
-              
-              var locPosition = new kakao.maps.LatLng(37.57777094158683, 126.97679253697846);
-             // 마커이미지의 크기 
-               var imageSize = new kakao.maps.Size(34, 39);
-                
-            // 마커이미지의 옵션. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정한다. 
-               var imageOption = {offset: new kakao.maps.Point(15, 39)};
+        
+        
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
 
-            // 마커의 이미지정보를 가지고 있는 마커이미지를 생성한다. 
-               var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
-               
-            // == 마커 생성하기 == //
-              var marker = new kakao.maps.Marker({ 
-                 map: mapobj, 
-                   position: locPosition, // locPosition 좌표에 마커를 생성 
-                   image: markerImage     // 마커이미지 설정
-                   
-             }); 
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+
+            // 정상적으로 검색이 완료됐으면 
+             if (status === kakao.maps.services.Status.OK) {
+
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords
+                });
+
+                // 인포윈도우로 장소에 대한 설명을 표시합니다
+                var infowindow = new kakao.maps.InfoWindow({
+                    content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+                });
+                infowindow.open(map, marker);
+
+                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                map.setCenter(coords);
+            } 
+        });    
+
               
-             marker.setMap(mapobj); // 지도에 마커를 표시한다
+           
+          
+            
+              marker.setMap(mapobj); // 지도에 마커를 표시한다
               // == 지도의 센터위치를 locPosition로 변경한다.(사이트에 접속한 클라이언트 컴퓨터의 현재의 위.경도로 변경한다.)
               mapobj.setCenter(locPosition);
            });
+ 	
         }
         else {
            // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정한다.
@@ -265,13 +310,7 @@
              image: markerImage  // 마커이미지 설정
         });
         
-       	 // 가져온 데이터를 attr으로 넣기  
-/*          $("span#chart1").attr("data-percentage", "${paraMap.one}");
-         $("span#chart2").attr("data-percentage", "${paraMap.two}");
-         $("span#chart3").attr("data-percentage", "${paraMap.three}");
-         $("span#chart4").attr("data-percentage", "${paraMap.four}");
-         $("span#chart5").attr("data-percentage", "${paraMap.five}"); */
-         
+
          
          
 	}); // end of ready
@@ -298,6 +337,9 @@
 				
 				console.log(cid);
 				console.log(basicInfo);
+				console.log(json);
+				
+				
 				
 				$("#adress_detail").text(basicInfo.address.region.fullname+" "+basicInfo.address.newaddr.newaddrfull);
 				$("a#page").text(basicInfo.homepage);
@@ -475,9 +517,11 @@
 					
 					$("button#btnMoreComment").val(Number(end) + len);
 					
+					
 					// 자기 자신의 원래 값에 불러온 json의 개수의 값을 넣어준다.
 					$("span#currentCnt").text( Number($("span#currentCnt").text()) + json.length);  // 현재 기록된 개수에 불러온 개수(배열의 길이 == 개수)를 더한다.
 					// 더보기 버튼을 계속해서 클릭해 countHIT 값과 totalHITCount 값이 일치하는 경우
+					
 					
 					if($("span#currentCnt").text() == $("span#totalCnt").text()) {
 						
@@ -762,7 +806,7 @@
 							
 						} else {
 							
-							alert("추가합니다.111111");
+							alert("추가합니다.");
 							
 							likeStore();
 						}
@@ -955,7 +999,7 @@
                         <div class="listing__details__rating">
                             
                             <div class="listing__details__rating__overall">
-                                <h2>4.7</h2>
+                                <h2>${storeAverage}</h2>
                                 <div class="listing__details__rating__star">
                                     <span class="icon_star"></span>
                                     <span class="icon_star"></span>
@@ -965,6 +1009,7 @@
                                 </div>
                                 <span id=reviewcnt></span>
                             </div>
+                            
                             <div class="listing__details__rating__bar">
                                 <div class="listing__details__rating__bar__item">
                                     <span>5점</span>
@@ -1002,6 +1047,7 @@
                                     <span class="right">${paraMap.cntOne}</span>
                                 </div>
                             </div>
+                            
                         </div>
                         
                          <div class="listing__details__review">
@@ -1012,17 +1058,25 @@
                             	<input name ="spoint" type="hidden" value="0">
                             	
                             	<div style="display: flex;">
-                            		<div style="width: 90%">
+                            		<div style="width: 85%">
                             		<textarea style="resize: both;" name="content" placeholder="공개 댓글 추가 ..."></textarea>
                             		</div>
-                					<div style="width: 10%; margin-left: 2%;" class="listing__details__comment__item__rating" >
-                                        <i id="star0" class="fa fa-star"></i>
-                                        <i id="star1" class="fa fa-star"></i>
-                                        <i id="star2" class="fa fa-star"></i>
-                                        <i id="star3" class="fa fa-star"></i>
-                                        <i id="star4" class="fa fa-star"></i>
-                                        <button id="btnAddcomment" class="site-btn" style="width: 100%;" onclick="goAddWrite();">댓글</button>
-                                	</div>
+                            		
+                            		<div class="addcoment">
+                            			<br>
+                            			<div class="listing__details__comment__item__rating" >
+                                        <i id="star0" class="fa fa-star" style="font-size: 10pt;"></i>
+                                        <i id="star1" class="fa fa-star" style="font-size: 10pt;"></i>
+                                        <i id="star2" class="fa fa-star" style="font-size: 10pt;"></i>
+                                        <i id="star3" class="fa fa-star" style="font-size: 10pt;"></i>
+                                        <i id="star4" class="fa fa-star" style="font-size: 10pt;"></i>
+                                		</div>
+                                		<br>
+                                		<div>
+                                		<button id="btnAddcomment" class="site-btn" style="width: 100%;" onclick="goAddWrite();">댓글</button>
+                                		</div>
+                            		</div>
+                					
                             	</div>   
                             	
    

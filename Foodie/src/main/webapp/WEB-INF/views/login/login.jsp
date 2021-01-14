@@ -205,6 +205,7 @@ function loginWithKakao() {
 			    	    
 			    	    console.log(thumbnail_image);
 			    	    
+			    	    // 이메일 중복검사
 			    	    $.ajax({
 			        		url:"<%= request.getContextPath()%>/emailDuplicateCheck.food",
 			        		data:{"email":email},  
@@ -215,8 +216,7 @@ function loginWithKakao() {
 			        			
 			        			if(json.isExists) {
 			        				
-			        				// 입력한 email 이 존재하는 경우라면 
-			        				/* alert("카카오로 로그인 할께요."); */ 
+			        				// 입력한 email 이 존재하는 경우라면  카카오로 로그인 
 			        				
 						       	 	var frm = document.kakaoLoginFrm;
 						       	 	

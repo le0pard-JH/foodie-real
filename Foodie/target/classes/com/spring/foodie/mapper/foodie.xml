@@ -282,6 +282,14 @@
 		where spoint = 5 and store_id=#{code}
 	</select>
 	
+	<select id="getStoreAverage" parameterType="String" resultType="double">
+		select round (sum(spoint) / count(*), 1 ) 
+		from tbl_comment
+		where store_id = #{code}
+	</select>
+	
+	
+	
 </mapper>
 
 

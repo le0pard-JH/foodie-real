@@ -26,11 +26,11 @@
 	</definition>
 	
 	
-	<!-- ==== tiles 를 사용하는 레이아웃(header,content,sideinfo,footer) 설정 시작 ==== -->
+	<!-- ==== tiles 를 사용하는 레이아웃 설정 시작 ==== -->
 	<definition name="layout-tiles2"  template="/WEB-INF/tiles/layout/layout-tiles2.jsp"> 
-		<put-attribute name="header"  value="/WEB-INF/tiles/tile2/header.jsp" />
+		<put-attribute name="header"  value="/WEB-INF/tiles/tile2/header.jsp"/>
 		<put-attribute name="content" value="" />
-		<put-attribute name="sideinfo"  value="/WEB-INF/tiles/tile2/sideinfo.jsp" />
+		<put-attribute name="sideinfo"  value="" />
 		<put-attribute name="footer"  value="/WEB-INF/tiles/tile2/footer.jsp" />
 	</definition>
 	

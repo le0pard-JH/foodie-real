@@ -40,7 +40,7 @@ public class FoodieDAO implements InterFoodieDAO {
 		
 		return svo;
 	}
-
+	
 	@Override
 	public List<Map<String,String>> moreView(String place, String scrollCtrl) {
 		
@@ -64,7 +64,6 @@ public class FoodieDAO implements InterFoodieDAO {
 	public List<CommentVO> getCommentList(Map<String, String> paraMap) {
 		
 		List<CommentVO> commentList = sqlsession.selectList("foodie.getCommentList", paraMap);
-		
 		return commentList;
 	}
 	
@@ -255,7 +254,7 @@ public class FoodieDAO implements InterFoodieDAO {
 		int n = sqlsession.selectOne("foodie.getFivePointCnt", code);
 		return n;
 	}
-
+	
 	@Override
 	public int getCommentCnt(String code) {
 		int n = sqlsession.selectOne("foodie.getCommentCnt", code); 
@@ -263,9 +262,10 @@ public class FoodieDAO implements InterFoodieDAO {
 	}
 
 	@Override
-	public List<CommentVO> getCommentListPaging(Map<String, String> paraMap) {
-		// TODO Auto-generated method stub
-		return null;
+	public double getStoreAverage(String code) {
+		
+		double n = sqlsession.selectOne("foodie.getStoreAverage", code);
+		return n;
 	}
 	
 	

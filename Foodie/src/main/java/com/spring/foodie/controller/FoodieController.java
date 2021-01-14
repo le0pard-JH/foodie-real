@@ -38,7 +38,7 @@ public class FoodieController {
 
 	// @Autowired
 	// private FileManager fileManager;
-
+	
 	@RequestMapping(value = "/index.food")
 	public String test_insert(HttpServletRequest request) {
 
@@ -141,10 +141,12 @@ public class FoodieController {
 		
 		String code = "290249009";
 		
+		// String code =request.getAttribute("code");s
+		
 		Map<String, Integer> paraMap = new HashMap<>();
+		
 		// 댓글 개수
 		int totalCnt = service.getCommentCnt(code);
-		
 		int cntOne = service.getOnePointCnt(code);
 		int cntTwo = service.getTwoPointCnt(code);
 		int cntThree = service.getThreePointCnt(code);
@@ -170,18 +172,39 @@ public class FoodieController {
 		int three=Integer.parseInt(String.valueOf(Math.round(threePerCent)));
 		int four=Integer.parseInt(String.valueOf(Math.round(fourPerCent)));
 		int five=Integer.parseInt(String.valueOf(Math.round(fivePerCent)));
-
+		
+		
+		
+		
+		// 상품 평점 가져오기
+		
+		double storeAverage=service.getStoreAverage(code);
+		
 		paraMap.put("one", one);
 		paraMap.put("two", two);
 		paraMap.put("three", three);
 		paraMap.put("four", four);
 		paraMap.put("five", five);
-				
-		mav.setViewName("storeBoard/storeDetail.tiles1");
-		mav.addObject("totalCnt", totalCnt);
-		mav.addObject("paraMap", paraMap);
 		
-		return mav;
+		
+		
+		 mav.setViewName("storeBoard/storeDetail.tiles2");
+		 mav.addObject("totalCnt", totalCnt);
+		 mav.addObject("storeAverage", storeAverage);
+		 mav.addObject("paraMap", paraMap);
+		 // mav.addObject("code",code);
+		 return mav;
+		
+		
+		/*
+		 * request.setAttribute("totalCnt", totalCnt);
+		 * request.setAttribute("storeAverage", storeAverage);
+		 * request.setAttribute("paraMap", paraMap);
+		 * 
+		 * return "/tiles1/storeBoard/storeDetail";
+		 */
+		
+		
 	}
 
 	// 검색
@@ -236,7 +259,9 @@ public class FoodieController {
 	// 지도 - 검색
 	@RequestMapping(value = "/map/search.food")
 	public ModelAndView map_search(HttpServletRequest request, ModelAndView mav) {
+		
 		mav.setViewName("main/map_search.tiles1");
+		
 		return mav;
 	}
 
@@ -530,7 +555,8 @@ public class FoodieController {
 	public String login(ModelAndView mav) {
 
 		return "/login/login";
-
+		
+		
 	}
 
 	// 로그인 처리하기 === //
@@ -1078,5 +1104,5 @@ public class FoodieController {
 		return jsonObj.toString();
 
 	}
-
+	
 }

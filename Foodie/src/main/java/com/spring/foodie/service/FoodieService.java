@@ -296,6 +296,15 @@ public class FoodieService implements InterFoodieService {
 		return n;
 	}
 
+	@Override
+	public double getStoreAverage(String code) {
+		
+		double n = dao.getStoreAverage(code);
+		return n;
+	}
+
+
+
 	
 
 }
