@@ -364,14 +364,10 @@
 		 	});  
 				
 				
-				
-				
-				
-				
-				
-				$("div#commentscnt").text(comment.scorecnt);
+				$("div#commentscnt").text(${totalCnt});
 
 					html ="";
+					
 					
 					$.each(menuInfo.menuList, function (index, item) {
 						
@@ -524,6 +520,7 @@
 						
 					}
 					
+					
 					$("div#commentView").html(html);
 					
 					// ★★★ 중요 !!! 더보기 버튼의 value 속성에 값을 지정하기 ★★★ //
@@ -534,6 +531,7 @@
 					// 자기 자신의 원래 값에 불러온 json의 개수의 값을 넣어준다.
 					$("span#currentCnt").text( Number($("span#currentCnt").text()) + json.length);  // 현재 기록된 개수에 불러온 개수(배열의 길이 == 개수)를 더한다.
 					// 더보기 버튼을 계속해서 클릭해 countHIT 값과 totalHITCount 값이 일치하는 경우
+					
 					
 					if($("span#currentCnt").text() == $("span#totalCnt").text()) {
 						
@@ -969,7 +967,7 @@
                                     <span class="icon_star"></span>
                                     <span class="icon_star-half_alt"></span>
                                 </div>
-                                <div id=commentscnt></div> <span>Views</span>
+                                <div id=commentscnt></div> <span style="color: white;">Views</span>
                             </div>
                             <p><span class="icon_pin_alt"></span> <label id="adress_detail"></label></p>
                         </div>

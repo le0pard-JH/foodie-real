@@ -45,7 +45,8 @@ public class FoodieController {
 		return "main/index.tiles1";
 
 	}
-
+	
+	
 	// index.food에서 넘겨받은 지역명을 분리하여 해당 위치만 검색리스트에 추가시켜주는 메서드
 	@RequestMapping(value = "/storeBoard/storeMain.food")
 	public ModelAndView viewMainBoard(ModelAndView mav, HttpServletRequest request) {
